@@ -161,6 +161,75 @@
     <div class="card">
     
     <div class="card-image">
+        <a href="/2019/10/26/Xss之HttpOnly下的攻击手法/" class="image is-7by1">
+            <img class="thumbnail" src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.10.27/1.jpg" alt="Xss之HttpOnly下的攻击手法">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-10-26T03:10:24.000Z">2019-10-26</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/WEB安全/">WEB安全</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 485 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/10/26/Xss之HttpOnly下的攻击手法/">Xss之HttpOnly下的攻击手法</a>
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p>仅作思路整理，实际利用代码未提供，请自行收集。</p>
+</blockquote>
+<h1 id="1-phpinfo页"><a href="#1-phpinfo页" class="headerlink" title="1.phpinfo页"></a>1.phpinfo页</h1><p>伪造对方身份访问同站的phpinfo页面，因为同域所以通过ajax提交访问可以读取到responseText，其中$_SERVER[“HTTP_COOKIE”]会打印出具有httponly属性的cookies。</p>
+<p>优点：成功率很高，最不容易被察觉，也是最常用的一种方式。</p>
+<p>缺点：需要phpinfo页，条件苛刻。</p>
+<h1 id="2-框架钓鱼"><a href="#2-框架钓鱼" class="headerlink" title="2.框架钓鱼"></a>2.框架钓鱼</h1><p>通过<code>&lt;iframe&gt;</code>标签嵌入一个远程域，完全撑开后，以覆盖原有的页面。</p>
+<p>优点：无跳转，域名无改变。</p>
+<p>缺点：通常会覆盖某个正常的页面，管理员易察觉。</p>
+<h1 id="3-跳转钓鱼"><a href="#3-跳转钓鱼" class="headerlink" title="3.跳转钓鱼"></a>3.跳转钓鱼</h1><p>通过购买相似域名，构建相同的钓鱼页面，使受害者跳转至钓鱼站。</p>
+<p>优点：主动性较强，可主动钓鱼。</p>
+<p>缺点：成本较高，且由于页面跳转过于明显，所以此方法十分容易被发现。</p>
+<h1 id="4-历史密码"><a href="#4-历史密码" class="headerlink" title="4.历史密码"></a>4.历史密码</h1><p>通过js伪造登录表单，欺骗浏览器自动填入，由此获取浏览器记住的历史密码。</p>
+<p>优点：不易被发现，可直接获取明文，成功率较高。</p>
+<p>缺点：各内核浏览器兼容性不一，最新版google已不支持http协议下的自动填入功能。</p>
+<h1 id="5-获取源码"><a href="#5-获取源码" class="headerlink" title="5.获取源码"></a>5.获取源码</h1><p>通过xss获取后端页面源码，常常可以发现一些越权访问，或者配合CSRF打组合拳去添加新用户或者执行其他的功能，以及通过审计后台js发现一些漏洞等。</p>
+<p>优点：信息获取的比较详细，也可以获取到后台账号名称。</p>
+<p>缺点：局限性较大，不易于利用。</p>
+<p>欢迎师傅们补充。。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
         <a href="/2019/07/26/剑走偏锋-旁站入侵到提权/" class="image is-7by1">
             <img class="thumbnail" src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.07.26/1.jpg" alt="剑走偏锋：旁站入侵到提权">
         </a>
@@ -668,61 +737,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-20T14:30:24.000Z">2019-02-20</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/WEB安全/">WEB安全</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7 分钟 读完 (大约 1124 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/02/20/00截断之追本溯源/">00截断之追本溯源</a>
-            
-        </h1>
-        <div class="content">
-            <p><img src="https://t1.picb.cc/uploads/2019/02/21/V3CgBJ.png" alt="1"></p>
-<blockquote>
-<p>0x00，%00，/00 之类的截断，本质都是一样的，只是不同表现方式而已。</p>
-</blockquote>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/02/20/00截断之追本溯源/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -790,7 +804,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        64
+                        65
                     </p>
                 </div>
             </div>
@@ -810,7 +824,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        34
+                        35
                     </p>
                 </div>
             </div>
@@ -869,6 +883,25 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/10/26/Xss之HttpOnly下的攻击手法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.10.27/1.jpg" alt="Xss之HttpOnly下的攻击手法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-26T03:10:24.000Z">2019-10-26</time></div>
+                    <a href="/2019/10/26/Xss之HttpOnly下的攻击手法/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Xss之HttpOnly下的攻击手法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/WEB安全/">WEB安全</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -946,25 +979,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/05/12/关于最近的流水账/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.05.12/1.jpg" alt="关于最近的流水账">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-12T14:30:44.000Z">2019-05-12</time></div>
-                    <a href="/2019/05/12/关于最近的流水账/" class="title has-link-black-ter is-size-6 has-text-weight-normal">关于最近的流水账</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/生活随笔/">生活随笔</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -991,7 +1005,7 @@
                 <span class="level-item">WEB安全</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">23</span>
+                <span class="level-item tag">24</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/内网渗透/">
@@ -1176,6 +1190,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/XSS/">
+                        <span class="tag">XSS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/YIT-CTF/">
                         <span class="tag">YIT-CTF</span>
                         <span class="tag is-grey">11</span>
@@ -1318,6 +1339,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/09/">
                 <span class="level-start">
                     <span class="level-item">九月 2019</span>
@@ -1851,7 +1883,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/00截断/" style="font-size: 10px;">00截断</a> <a href="/tags/BurpSuite/" style="font-size: 10px;">BurpSuite</a> <a href="/tags/GetShell/" style="font-size: 12.5px;">GetShell</a> <a href="/tags/HTML/" style="font-size: 12.5px;">HTML</a> <a href="/tags/Https/" style="font-size: 10px;">Https</a> <a href="/tags/JAVA/" style="font-size: 11.25px;">JAVA</a> <a href="/tags/JavaScript/" style="font-size: 11.25px;">JavaScript</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PDF预览/" style="font-size: 10px;">PDF预览</a> <a href="/tags/PHP/" style="font-size: 17.5px;">PHP</a> <a href="/tags/SQLi-Labs/" style="font-size: 10px;">SQLi Labs</a> <a href="/tags/SQL注入/" style="font-size: 18.75px;">SQL注入</a> <a href="/tags/Short-filename/" style="font-size: 10px;">Short filename</a> <a href="/tags/Sqlmap/" style="font-size: 12.5px;">Sqlmap</a> <a href="/tags/WEB/" style="font-size: 15px;">WEB</a> <a href="/tags/WIN提权/" style="font-size: 13.75px;">WIN提权</a> <a href="/tags/YIT-CTF/" style="font-size: 20px;">YIT-CTF</a> <a href="/tags/yilia主题/" style="font-size: 10px;">yilia主题</a> <a href="/tags/内网渗透/" style="font-size: 11.25px;">内网渗透</a> <a href="/tags/密码学/" style="font-size: 10px;">密码学</a> <a href="/tags/小技巧/" style="font-size: 11.25px;">小技巧</a> <a href="/tags/弱口令/" style="font-size: 10px;">弱口令</a> <a href="/tags/旅行/" style="font-size: 13.75px;">旅行</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/电音/" style="font-size: 10px;">电音</a> <a href="/tags/端口渗透/" style="font-size: 10px;">端口渗透</a> <a href="/tags/网站建设/" style="font-size: 10px;">网站建设</a> <a href="/tags/网络安全法/" style="font-size: 10px;">网络安全法</a> <a href="/tags/解析漏洞/" style="font-size: 10px;">解析漏洞</a> <a href="/tags/路由器/" style="font-size: 10px;">路由器</a> <a href="/tags/钓鱼/" style="font-size: 10px;">钓鱼</a> <a href="/tags/随想/" style="font-size: 16.25px;">随想</a> <a href="/tags/隐写术/" style="font-size: 13.75px;">隐写术</a> <a href="/tags/面试经验/" style="font-size: 10px;">面试经验</a>
+        <a href="/tags/00截断/" style="font-size: 10px;">00截断</a> <a href="/tags/BurpSuite/" style="font-size: 10px;">BurpSuite</a> <a href="/tags/GetShell/" style="font-size: 12.5px;">GetShell</a> <a href="/tags/HTML/" style="font-size: 12.5px;">HTML</a> <a href="/tags/Https/" style="font-size: 10px;">Https</a> <a href="/tags/JAVA/" style="font-size: 11.25px;">JAVA</a> <a href="/tags/JavaScript/" style="font-size: 11.25px;">JavaScript</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PDF预览/" style="font-size: 10px;">PDF预览</a> <a href="/tags/PHP/" style="font-size: 17.5px;">PHP</a> <a href="/tags/SQLi-Labs/" style="font-size: 10px;">SQLi Labs</a> <a href="/tags/SQL注入/" style="font-size: 18.75px;">SQL注入</a> <a href="/tags/Short-filename/" style="font-size: 10px;">Short filename</a> <a href="/tags/Sqlmap/" style="font-size: 12.5px;">Sqlmap</a> <a href="/tags/WEB/" style="font-size: 15px;">WEB</a> <a href="/tags/WIN提权/" style="font-size: 13.75px;">WIN提权</a> <a href="/tags/XSS/" style="font-size: 10px;">XSS</a> <a href="/tags/YIT-CTF/" style="font-size: 20px;">YIT-CTF</a> <a href="/tags/yilia主题/" style="font-size: 10px;">yilia主题</a> <a href="/tags/内网渗透/" style="font-size: 11.25px;">内网渗透</a> <a href="/tags/密码学/" style="font-size: 10px;">密码学</a> <a href="/tags/小技巧/" style="font-size: 11.25px;">小技巧</a> <a href="/tags/弱口令/" style="font-size: 10px;">弱口令</a> <a href="/tags/旅行/" style="font-size: 13.75px;">旅行</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/电音/" style="font-size: 10px;">电音</a> <a href="/tags/端口渗透/" style="font-size: 10px;">端口渗透</a> <a href="/tags/网站建设/" style="font-size: 10px;">网站建设</a> <a href="/tags/网络安全法/" style="font-size: 10px;">网络安全法</a> <a href="/tags/解析漏洞/" style="font-size: 10px;">解析漏洞</a> <a href="/tags/路由器/" style="font-size: 10px;">路由器</a> <a href="/tags/钓鱼/" style="font-size: 10px;">钓鱼</a> <a href="/tags/随想/" style="font-size: 16.25px;">随想</a> <a href="/tags/隐写术/" style="font-size: 13.75px;">隐写术</a> <a href="/tags/面试经验/" style="font-size: 10px;">面试经验</a>
     </div>
 </div>
 
@@ -1879,6 +1911,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/09/">
                 <span class="level-start">
                     <span class="level-item">九月 2019</span>
@@ -2412,7 +2455,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/00截断/" style="font-size: 10px;">00截断</a> <a href="/tags/BurpSuite/" style="font-size: 10px;">BurpSuite</a> <a href="/tags/GetShell/" style="font-size: 12.5px;">GetShell</a> <a href="/tags/HTML/" style="font-size: 12.5px;">HTML</a> <a href="/tags/Https/" style="font-size: 10px;">Https</a> <a href="/tags/JAVA/" style="font-size: 11.25px;">JAVA</a> <a href="/tags/JavaScript/" style="font-size: 11.25px;">JavaScript</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PDF预览/" style="font-size: 10px;">PDF预览</a> <a href="/tags/PHP/" style="font-size: 17.5px;">PHP</a> <a href="/tags/SQLi-Labs/" style="font-size: 10px;">SQLi Labs</a> <a href="/tags/SQL注入/" style="font-size: 18.75px;">SQL注入</a> <a href="/tags/Short-filename/" style="font-size: 10px;">Short filename</a> <a href="/tags/Sqlmap/" style="font-size: 12.5px;">Sqlmap</a> <a href="/tags/WEB/" style="font-size: 15px;">WEB</a> <a href="/tags/WIN提权/" style="font-size: 13.75px;">WIN提权</a> <a href="/tags/YIT-CTF/" style="font-size: 20px;">YIT-CTF</a> <a href="/tags/yilia主题/" style="font-size: 10px;">yilia主题</a> <a href="/tags/内网渗透/" style="font-size: 11.25px;">内网渗透</a> <a href="/tags/密码学/" style="font-size: 10px;">密码学</a> <a href="/tags/小技巧/" style="font-size: 11.25px;">小技巧</a> <a href="/tags/弱口令/" style="font-size: 10px;">弱口令</a> <a href="/tags/旅行/" style="font-size: 13.75px;">旅行</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/电音/" style="font-size: 10px;">电音</a> <a href="/tags/端口渗透/" style="font-size: 10px;">端口渗透</a> <a href="/tags/网站建设/" style="font-size: 10px;">网站建设</a> <a href="/tags/网络安全法/" style="font-size: 10px;">网络安全法</a> <a href="/tags/解析漏洞/" style="font-size: 10px;">解析漏洞</a> <a href="/tags/路由器/" style="font-size: 10px;">路由器</a> <a href="/tags/钓鱼/" style="font-size: 10px;">钓鱼</a> <a href="/tags/随想/" style="font-size: 16.25px;">随想</a> <a href="/tags/隐写术/" style="font-size: 13.75px;">隐写术</a> <a href="/tags/面试经验/" style="font-size: 10px;">面试经验</a>
+        <a href="/tags/00截断/" style="font-size: 10px;">00截断</a> <a href="/tags/BurpSuite/" style="font-size: 10px;">BurpSuite</a> <a href="/tags/GetShell/" style="font-size: 12.5px;">GetShell</a> <a href="/tags/HTML/" style="font-size: 12.5px;">HTML</a> <a href="/tags/Https/" style="font-size: 10px;">Https</a> <a href="/tags/JAVA/" style="font-size: 11.25px;">JAVA</a> <a href="/tags/JavaScript/" style="font-size: 11.25px;">JavaScript</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PDF预览/" style="font-size: 10px;">PDF预览</a> <a href="/tags/PHP/" style="font-size: 17.5px;">PHP</a> <a href="/tags/SQLi-Labs/" style="font-size: 10px;">SQLi Labs</a> <a href="/tags/SQL注入/" style="font-size: 18.75px;">SQL注入</a> <a href="/tags/Short-filename/" style="font-size: 10px;">Short filename</a> <a href="/tags/Sqlmap/" style="font-size: 12.5px;">Sqlmap</a> <a href="/tags/WEB/" style="font-size: 15px;">WEB</a> <a href="/tags/WIN提权/" style="font-size: 13.75px;">WIN提权</a> <a href="/tags/XSS/" style="font-size: 10px;">XSS</a> <a href="/tags/YIT-CTF/" style="font-size: 20px;">YIT-CTF</a> <a href="/tags/yilia主题/" style="font-size: 10px;">yilia主题</a> <a href="/tags/内网渗透/" style="font-size: 11.25px;">内网渗透</a> <a href="/tags/密码学/" style="font-size: 10px;">密码学</a> <a href="/tags/小技巧/" style="font-size: 11.25px;">小技巧</a> <a href="/tags/弱口令/" style="font-size: 10px;">弱口令</a> <a href="/tags/旅行/" style="font-size: 13.75px;">旅行</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/电音/" style="font-size: 10px;">电音</a> <a href="/tags/端口渗透/" style="font-size: 10px;">端口渗透</a> <a href="/tags/网站建设/" style="font-size: 10px;">网站建设</a> <a href="/tags/网络安全法/" style="font-size: 10px;">网络安全法</a> <a href="/tags/解析漏洞/" style="font-size: 10px;">解析漏洞</a> <a href="/tags/路由器/" style="font-size: 10px;">路由器</a> <a href="/tags/钓鱼/" style="font-size: 10px;">钓鱼</a> <a href="/tags/随想/" style="font-size: 16.25px;">随想</a> <a href="/tags/隐写术/" style="font-size: 13.75px;">隐写术</a> <a href="/tags/面试经验/" style="font-size: 10px;">面试经验</a>
     </div>
 </div>
 
