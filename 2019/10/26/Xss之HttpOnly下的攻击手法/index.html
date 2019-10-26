@@ -10,19 +10,19 @@
 <title>Xss之HttpOnly下的攻击手法 - Se7en&#39;s Blog|Learn and live</title>
 
 
-    <meta name="description" content="仅作思路整理，实际利用代码未提供，请自行收集。  1.phpinfo页伪造对方身份访问同站的phpinfo页面，因为同域所以通过ajax提交访问可以读取到responseText，其中$_SERVER[“HTTP_COOKIE”]会打印出具有httponly属性的cookies。 优点：成功率很高，最不容易被察觉，也是最常用的一种方式。 缺点：需要phpinfo页，条件苛刻。 2.框架钓鱼通过&amp;">
+    <meta name="description" content="仅作思路整理，实际利用代码未提供，请自行收集。">
 <meta name="keywords" content="XSS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Xss之HttpOnly下的攻击手法">
 <meta property="og:url" content="https://www.se7ensec.cn/2019/10/26/Xss之HttpOnly下的攻击手法/index.html">
 <meta property="og:site_name" content="Se7en&#39;s Blog|Learn and live">
-<meta property="og:description" content="仅作思路整理，实际利用代码未提供，请自行收集。  1.phpinfo页伪造对方身份访问同站的phpinfo页面，因为同域所以通过ajax提交访问可以读取到responseText，其中$_SERVER[“HTTP_COOKIE”]会打印出具有httponly属性的cookies。 优点：成功率很高，最不容易被察觉，也是最常用的一种方式。 缺点：需要phpinfo页，条件苛刻。 2.框架钓鱼通过&amp;">
+<meta property="og:description" content="仅作思路整理，实际利用代码未提供，请自行收集。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.10.27/1.jpg">
-<meta property="og:updated_time" content="2019-10-26T17:28:53.501Z">
+<meta property="og:updated_time" content="2019-10-26T17:31:11.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xss之HttpOnly下的攻击手法">
-<meta name="twitter:description" content="仅作思路整理，实际利用代码未提供，请自行收集。  1.phpinfo页伪造对方身份访问同站的phpinfo页面，因为同域所以通过ajax提交访问可以读取到responseText，其中$_SERVER[“HTTP_COOKIE”]会打印出具有httponly属性的cookies。 优点：成功率很高，最不容易被察觉，也是最常用的一种方式。 缺点：需要phpinfo页，条件苛刻。 2.框架钓鱼通过&amp;">
+<meta name="twitter:description" content="仅作思路整理，实际利用代码未提供，请自行收集。">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.10.27/1.jpg">
 
 
@@ -173,7 +173,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 485 个字)
+                    3 分钟 读完 (大约 486 个字)
                 </span>
                 
                 
@@ -194,6 +194,8 @@
             <blockquote>
 <p>仅作思路整理，实际利用代码未提供，请自行收集。</p>
 </blockquote>
+<a id="more"></a>
+
 <h1 id="1-phpinfo页"><a href="#1-phpinfo页" class="headerlink" title="1.phpinfo页"></a>1.phpinfo页</h1><p>伪造对方身份访问同站的phpinfo页面，因为同域所以通过ajax提交访问可以读取到responseText，其中$_SERVER[“HTTP_COOKIE”]会打印出具有httponly属性的cookies。</p>
 <p>优点：成功率很高，最不容易被察觉，也是最常用的一种方式。</p>
 <p>缺点：需要phpinfo页，条件苛刻。</p>

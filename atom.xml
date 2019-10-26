@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.se7ensec.cn/"/>
-  <updated>2019-10-26T17:28:53.501Z</updated>
+  <updated>2019-10-26T17:31:11.355Z</updated>
   <id>https://www.se7ensec.cn/</id>
   
   <author>
@@ -21,19 +21,15 @@
     <link href="https://www.se7ensec.cn/2019/10/26/Xss%E4%B9%8BHttpOnly%E4%B8%8B%E7%9A%84%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95/"/>
     <id>https://www.se7ensec.cn/2019/10/26/Xss之HttpOnly下的攻击手法/</id>
     <published>2019-10-26T03:10:24.000Z</published>
-    <updated>2019-10-26T17:28:53.501Z</updated>
+    <updated>2019-10-26T17:31:11.355Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>仅作思路整理，实际利用代码未提供，请自行收集。</p></blockquote><h1 id="1-phpinfo页"><a href="#1-phpinfo页" class="headerlink" title="1.phpinfo页"></a>1.phpinfo页</h1><p>伪造对方身份访问同站的phpinfo页面，因为同域所以通过ajax提交访问可以读取到responseText，其中$_SERVER[“HTTP_COOKIE”]会打印出具有httponly属性的cookies。</p><p>优点：成功率很高，最不容易被察觉，也是最常用的一种方式。</p><p>缺点：需要phpinfo页，条件苛刻。</p><h1 id="2-框架钓鱼"><a href="#2-框架钓鱼" class="headerlink" title="2.框架钓鱼"></a>2.框架钓鱼</h1><p>通过<code>&lt;iframe&gt;</code>标签嵌入一个远程域，完全撑开后，以覆盖原有的页面。</p><p>优点：无跳转，域名无改变。</p><p>缺点：通常会覆盖某个正常的页面，管理员易察觉。</p><h1 id="3-跳转钓鱼"><a href="#3-跳转钓鱼" class="headerlink" title="3.跳转钓鱼"></a>3.跳转钓鱼</h1><p>通过购买相似域名，构建相同的钓鱼页面，使受害者跳转至钓鱼站。</p><p>优点：主动性较强，可主动钓鱼。</p><p>缺点：成本较高，且由于页面跳转过于明显，所以此方法十分容易被发现。</p><h1 id="4-历史密码"><a href="#4-历史密码" class="headerlink" title="4.历史密码"></a>4.历史密码</h1><p>通过js伪造登录表单，欺骗浏览器自动填入，由此获取浏览器记住的历史密码。</p><p>优点：不易被发现，可直接获取明文，成功率较高。</p><p>缺点：各内核浏览器兼容性不一，最新版google已不支持http协议下的自动填入功能。</p><h1 id="5-获取源码"><a href="#5-获取源码" class="headerlink" title="5.获取源码"></a>5.获取源码</h1><p>通过xss获取后端页面源码，常常可以发现一些越权访问，或者配合CSRF打组合拳去添加新用户或者执行其他的功能，以及通过审计后台js发现一些漏洞等。</p><p>优点：信息获取的比较详细，也可以获取到后台账号名称。</p><p>缺点：局限性较大，不易于利用。</p><p>欢迎师傅们补充。。</p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>仅作思路整理，实际利用代码未提供，请自行收集。</p></blockquote><a id="more"></a><h1 id="1-phpinfo页"><a href="#1-phpinfo页" class="headerlink" title="1.phpinfo页"></a>1.phpinfo页</h1><p>伪造对方身份访问同站的phpinfo页面，因为同域所以通过ajax提交访问可以读取到responseText，其中$_SERVER[“HTTP_COOKIE”]会打印出具有httponly属性的cookies。</p><p>优点：成功率很高，最不容易被察觉，也是最常用的一种方式。</p><p>缺点：需要phpinfo页，条件苛刻。</p><h1 id="2-框架钓鱼"><a href="#2-框架钓鱼" class="headerlink" title="2.框架钓鱼"></a>2.框架钓鱼</h1><p>通过<code>&lt;iframe&gt;</code>标签嵌入一个远程域，完全撑开后，以覆盖原有的页面。</p><p>优点：无跳转，域名无改变。</p><p>缺点：通常会覆盖某个正常的页面，管理员易察觉。</p><h1 id="3-跳转钓鱼"><a href="#3-跳转钓鱼" class="headerlink" title="3.跳转钓鱼"></a>3.跳转钓鱼</h1><p>通过购买相似域名，构建相同的钓鱼页面，使受害者跳转至钓鱼站。</p><p>优点：主动性较强，可主动钓鱼。</p><p>缺点：成本较高，且由于页面跳转过于明显，所以此方法十分容易被发现。</p><h1 id="4-历史密码"><a href="#4-历史密码" class="headerlink" title="4.历史密码"></a>4.历史密码</h1><p>通过js伪造登录表单，欺骗浏览器自动填入，由此获取浏览器记住的历史密码。</p><p>优点：不易被发现，可直接获取明文，成功率较高。</p><p>缺点：各内核浏览器兼容性不一，最新版google已不支持http协议下的自动填入功能。</p><h1 id="5-获取源码"><a href="#5-获取源码" class="headerlink" title="5.获取源码"></a>5.获取源码</h1><p>通过xss获取后端页面源码，常常可以发现一些越权访问，或者配合CSRF打组合拳去添加新用户或者执行其他的功能，以及通过审计后台js发现一些漏洞等。</p><p>优点：信息获取的比较详细，也可以获取到后台账号名称。</p><p>缺点：局限性较大，不易于利用。</p><p>欢迎师傅们补充。。</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;blockquote&gt;
+      &lt;blockquote&gt;
 &lt;p&gt;仅作思路整理，实际利用代码未提供，请自行收集。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1 id=&quot;1-phpinfo页&quot;&gt;&lt;a href=&quot;#1-phpinfo页&quot; class=&quot;headerlink&quot; title=&quot;1.phpinfo页&quot;&gt;&lt;/
-      
     
     </summary>
     
