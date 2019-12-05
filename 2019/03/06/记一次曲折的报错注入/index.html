@@ -19,7 +19,7 @@
 <meta property="og:description" content="机缘巧合，查询旁站时随手点开的一个网站，加单引号 &amp;#39; 页面报错，同时爆出的还有sql查询语句，程序版本ThinkPHP V5.0.14，测试了下前一阵子爆出来的exp，应该也是修复了。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.se7ensec.cn/images/og_image.png">
-<meta property="og:updated_time" content="2019-03-10T15:50:51.701Z">
+<meta property="og:updated_time" content="2019-12-05T17:13:01.493Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次曲折的报错注入">
 <meta name="twitter:description" content="机缘巧合，查询旁站时随手点开的一个网站，加单引号 &amp;#39; 页面报错，同时爆出的还有sql查询语句，程序版本ThinkPHP V5.0.14，测试了下前一阵子爆出来的exp，应该也是修复了。">
@@ -167,7 +167,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1348 个字)
+                    9 分钟 读完 (大约 1346 个字)
                 </span>
                 
                 
@@ -231,7 +231,7 @@
 <p>本来想继续用脚本，思路就是脚本里按行读取tables.txt（按行存放的表名）的每一行内容，去拼接url，然后获取返回内容中有没有数据，结果返回的内容全为400了</p>
 <p>这里用burp的爆破功能，可以达到一样的效果，唯一的不足之处就是要手动查看返回包了，尝试下user_pass，发现出来了数据，其他获取数据方法同理</p>
 <p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.03.06/8.png" alt="8"></p>
-<h1 id="收工"><a href="#收工" class="headerlink" title="收工"></a>收工</h1><p>爆破出来的后台登陆地址被302跳转了，然后就没再测下去，其实也没心思再看下去了，这两天基本全在弄这个东西，之所以坚持要搞出来也是因为想弄清楚报错注入的利用方式，这次折腾完了又收获不少，文章看似很顺利，但是亲自上手就会发现坑真的不少，总结一下，留做纪念吧。（啥时候才能变成dalao啊！哭~）</p>
+<h1 id="收工"><a href="#收工" class="headerlink" title="收工"></a>收工</h1><p>爆破出来的后台登陆地址被302跳转了，然后就没再测下去，其实也没心思再看下去了，这两天基本全在弄这个东西，之所以坚持要搞出来也是因为想弄清楚报错注入的利用方式，这次折腾完了又收获不少，文章看似很顺利，但是亲自上手就会发现坑真的不少，总结一下，留做纪念吧。（啥时候才能变成dalao啊）</p>
 
         </div>
         
