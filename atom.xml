@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.se7ensec.cn/"/>
-  <updated>2020-01-07T16:30:57.927Z</updated>
+  <updated>2020-01-08T18:24:56.915Z</updated>
   <id>https://www.se7ensec.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>迟来的年度总结</title>
+    <link href="https://www.se7ensec.cn/2020/01/09/%E8%BF%9F%E6%9D%A5%E7%9A%84%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/"/>
+    <id>https://www.se7ensec.cn/2020/01/09/迟来的年度总结/</id>
+    <published>2020-01-08T18:15:44.000Z</published>
+    <updated>2020-01-08T18:24:56.915Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>不知道现在写年度总结是不是晚了点。</p></blockquote><a id="more"></a><h1 id="2019"><a href="#2019" class="headerlink" title="2019"></a>2019</h1><p>2019年，一切都顺顺利利，做了人生第一份实习工作，进了一些交流的小圈子，认识了些真正的”师傅”，通过论坛，公众号，QQ、微信群、小密圈等各种渠道，每天都能被动、主动的学习到各种思路和知识，做了些技术沉淀，但还是总会感觉欠缺一些东西，那就是自己的定位和发展方向。</p><p>渗透测试这条路当初既然选择了就要坚持走下去，面临知识面”深度”和”广度”的发展问题，一直是我比较迷茫的问题。</p><h4 id="选择”深度”"><a href="#选择”深度”" class="headerlink" title="选择”深度”"></a>选择”深度”</h4><p>找一个领域，深入研究，争取几年以后达到一定境界，最好是这个领域中相对领先的位置，但是感觉自己又没这么聪明，一直以来的学习，都是在模仿已有的东西，自己研究的少之又少。</p><h4 id="选择”广度”"><a href="#选择”广度”" class="headerlink" title="选择”广度”"></a>选择”广度”</h4><p>这更适合工作场景中的需求，为了达到目标要求，不择手段，需要大量的实战经验和知识面来做支撑，难易程度一点不亚于前者，或者更甚。搞渗透测试要考虑的也是一个面，要做的就是在面上找一个突破点，这个突破点不应仅仅局限在web上，所以自然而然的就要去了解一些特别的攻击手法，这也就是为什么会有”广度”的存在。这种感觉尤其在我看到的、了解的东西多了之后就越发的清晰了。</p><h1 id="2020"><a href="#2020" class="headerlink" title="2020"></a>2020</h1><h4 id="我的答案"><a href="#我的答案" class="headerlink" title="我的答案"></a>我的答案</h4><p>最近在关注一个用匿名ID的师傅写的博客，匿名可能是工作性质的原因吧，里面记录的那些内容，读完多多少少有一些共鸣，自己也找到了问题的答案，一名合格的”黑客”，在必须追求”广度”的同时，还应该合理发展自己的”深度”，这两个实际上是不冲突的，只不过是要多付出一些精力在自己比较擅长的方向，坚持做下去，耐心点总会做出成绩。</p><h4 id="未来计划"><a href="#未来计划" class="headerlink" title="未来计划"></a>未来计划</h4><p>会继续修炼web（入门容易深入难）</p><p>拓展内网渗透这个新的方向（横向，免杀，维权）</p><p>Python（思路清晰，编码高效）</p><h4 id="最终目标"><a href="#最终目标" class="headerlink" title="最终目标"></a>最终目标</h4><p>争取实现一套有着自己独到见解且相对完善的渗透测试体系</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;不知道现在写年度总结是不是晚了点。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="生活随笔" scheme="https://www.se7ensec.cn/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随想" scheme="https://www.se7ensec.cn/tags/%E9%9A%8F%E6%83%B3/"/>
+    
+  </entry>
   
   <entry>
     <title>BC实战|后渗透之Bypass Applocker到提权</title>
@@ -505,32 +530,6 @@
       <category term="WIN提权" scheme="https://www.se7ensec.cn/tags/WIN%E6%8F%90%E6%9D%83/"/>
     
       <category term="Sqlmap" scheme="https://www.se7ensec.cn/tags/Sqlmap/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>00截断之追本溯源</title>
-    <link href="https://www.se7ensec.cn/2019/02/20/00%E6%88%AA%E6%96%AD%E4%B9%8B%E8%BF%BD%E6%9C%AC%E6%BA%AF%E6%BA%90/"/>
-    <id>https://www.se7ensec.cn/2019/02/20/00截断之追本溯源/</id>
-    <published>2019-02-20T14:30:24.000Z</published>
-    <updated>2019-02-20T17:41:23.544Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://t1.picb.cc/uploads/2019/02/21/V3CgBJ.png" alt="1"></p><blockquote><p>0x00，%00，/00 之类的截断，本质都是一样的，只是不同表现方式而已。</p></blockquote><a id="more"></a><p>00截断在我写这篇文章之前，一直是很模糊的概念。看到别人利用成功，等到真要使用时又手足无措。用了一些时间学习了一下原理，本文引用比较多，仅仅是为了再次梳理一遍，不作为任何商业用途。</p><h1 id="截断原理"><a href="#截断原理" class="headerlink" title="截断原理"></a>截断原理</h1><p>截断漏洞出现的核心就是chr(0)，这个字符不为空 (Null)，也不是空字符 (“”)，更不是空格。当程序在输出含有 chr(0)变量时，chr(0)后面的数据会被停止，换句话说，就是误把它当成结束符，后面的数据直接忽略，这就导致了漏洞产生。</p><h1 id="00截断"><a href="#00截断" class="headerlink" title="00截断"></a>00截断</h1><h2 id="00截断的限制条件"><a href="#00截断的限制条件" class="headerlink" title="00截断的限制条件"></a>00截断的限制条件</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PHP&lt;5.3.29，magic_quotes_gpc为OFF状态</span><br></pre></td></tr></table></figure><h2 id="00截断的利用方法"><a href="#00截断的利用方法" class="headerlink" title="00截断的利用方法"></a>00截断的利用方法</h2><h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$uploaded_name = $_FILES[ <span class="hljs-string">'file'</span> ][ <span class="hljs-string">'name'</span> ];</span><br><span class="line">$uploaded_ext  = substr( $uploaded_name, strrpos( $uploaded_name, <span class="hljs-string">'.'</span> ) + <span class="hljs-number">1</span>); <span class="hljs-comment">// 提取上传文件后缀</span></span><br><span class="line">$target_name = md5( uniqid() . $uploaded_name ) . <span class="hljs-string">'.'</span> . $uploaded_ext; <span class="hljs-comment">// 对上传文件进行重命名</span></span><br><span class="line"><span class="hljs-keyword">if</span>( ( strtolower( $uploaded_ext ) == <span class="hljs-string">"jpg"</span> || strtolower( $uploaded_ext ) == <span class="hljs-string">"jpeg"</span> || strtolower( $uploaded_ext ) == <span class="hljs-string">"png"</span> )) </span><br><span class="line">&#123;  </span><br><span class="line">    move_uploaded_file($_FILES[<span class="hljs-string">"file"</span>][<span class="hljs-string">"tmp_name"</span>],</span><br><span class="line">    $dir . $target_name); <span class="hljs-comment">// 将临时文件移动到指定目录</span></span><br><span class="line">    $result = $dir . $target_name;</span><br><span class="line">    <span class="hljs-keyword">echo</span> <span class="hljs-string">"Stored in: $result"</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">else</span>&#123;</span><br><span class="line">    <span class="hljs-keyword">echo</span> <span class="hljs-string">"Invalid file"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="漏洞原理和利用"><a href="#漏洞原理和利用" class="headerlink" title="漏洞原理和利用"></a>漏洞原理和利用</h3><h4 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h4><p>需要存在上传路径，比如数据包中存在<code>path: uploads/</code>，那么攻击者可以通过修改path的值来构造paylod: <code>uploads/aa.php%00</code>，如果程序中检测的是文件的后缀名合法性，而且通过拼接路径和文件名来保存上传的文件，那么攻击者修改了path以后的拼接结果为：<code>uploads/aaa.php%00/2018051413370000.php</code>，移动文件的时候会将文件保存为<code>uploads/aaa.php</code>，从而达到Getshell效果。</p><h4 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h4><p>假设存在漏洞文件 <strong>lfi.php</strong></p><figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;?php</span>  </span><br><span class="line">$temp = $_REQUEST[<span class="hljs-string">'action'</span>].<span class="hljs-string">".php"</span>;  </span><br><span class="line"><span class="hljs-keyword">include</span> $temp; <span class="hljs-comment">// include造成了LFI和php的%00截断</span></span><br><span class="line"><span class="hljs-meta">?&gt;</span></span><br></pre></td></tr></table></figure><p>和想要包含的文件 <strong>Password</strong>  </p><figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;?php</span>  </span><br><span class="line">    phpinfo();  </span><br><span class="line"><span class="hljs-meta">?&gt;</span></span><br></pre></td></tr></table></figure><p>利用：</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lfi.php?action=password%00</span><br></pre></td></tr></table></figure><p>即可成功包含并执行（%00是被会url解码成0x00，所以导致截断）</p><p><strong>※也就是说，如果没有截断条件，lfi.php就只能包含php扩展名的文件，有截断条件时，lfi.php可以包含任意文件的扩展名</strong></p><p>这时把<code>magic_quotes_gpc</code>打开，%00会被转义成了 \0 两个单体字符，且不再具有截断功能。原因是：当打开<code>magic_quotes_gpc</code>时，所有的 ‘（单引号），”（双引号），\（反斜线）和 %00 都会被自动加上一个反斜线进行转义，且还有很多函数有类似的作用 如：addslashes()、mysql_escape_string()、mysql_real_escape_string() 等。</p><h3 id="常见使用误区"><a href="#常见使用误区" class="headerlink" title="常见使用误区"></a>常见使用误区</h3><p>很多人喜欢在文件名中加<code>%00</code>进行截断，其实方式是不对的，为什么呢？比如攻击者构造文件名：<code>a.php%00a.jpg</code>，在提取后缀名的时候遇到<code>%00</code>则认为字符串结束了，那么他提取到的后缀名最终还是<code>.php</code>，<code>.php</code>后缀又不允许上传所以上传肯定失败了。</p><h1 id="00和-00-urldecode"><a href="#00和-00-urldecode" class="headerlink" title="%00和%00(urldecode)"></a>%00和%00(urldecode)</h1><p>这是在burp中很常见的两种操作</p><h2 id="直接使用-00"><a href="#直接使用-00" class="headerlink" title="直接使用%00"></a>直接使用%00</h2><p>path可以存放在<strong>URL</strong>或者<strong>Cookie</strong>中，而在提交数据的时候，浏览器会对数据做一次urlencode的操作，而到服务端，会对数据进行一次urldecode的操作，因此如果path在 <strong>非enctype=multipart/form-data</strong> 的表单中或 <strong>URL</strong>  <strong>or</strong>  <strong>Cookie</strong> 中的时候，就可以直接写<code>%00</code>不需要进行URLdecode操作，让服务端对<code>%00</code>进行自动URL解码即可。</p><h2 id="使用-00-urldecode"><a href="#使用-00-urldecode" class="headerlink" title="使用%00(urldecode)"></a>使用%00(urldecode)</h2><p>当上传的表单中有一个<code>enctype</code>的属性，并且需要<code>enctype=&quot;multipart/form-data&quot;</code> (将文件以二进制的形式上传，从而可以实现多种类型的文件上传，且不对表单中数据进行编码)，<code>path</code>大多数都是存放在表单中的，因此需要在数据包中进行urldecode操作使<code>%00</code>变成字符串结束符号。</p><p>参考：</p><p><a href="http://www.admintony.com/%E5%85%B3%E4%BA%8E%E4%B8%8A%E4%BC%A0%E4%B8%AD%E7%9A%8400%E6%88%AA%E6%96%AD%E5%88%86%E6%9E%90.html" target="_blank" rel="noopener">AdminTony’s Blog</a></p><p><a href="https://www.2cto.com/article/201502/377462.html" target="_blank" rel="noopener">红黑联盟</a></p><p><a href="https://cloud.tencent.com/developer/article/1378895" target="_blank" rel="noopener">安恒网络空间安全讲武堂</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://t1.picb.cc/uploads/2019/02/21/V3CgBJ.png&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;0x00，%00，/00 之类的截断，本质都是一样的，只是不同表现方式而已。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="WEB安全" scheme="https://www.se7ensec.cn/categories/WEB%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="00截断" scheme="https://www.se7ensec.cn/tags/00%E6%88%AA%E6%96%AD/"/>
     
   </entry>
   
