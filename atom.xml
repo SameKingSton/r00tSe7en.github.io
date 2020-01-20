@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.se7ensec.cn/"/>
-  <updated>2020-01-08T18:24:56.915Z</updated>
+  <updated>2020-01-20T07:51:05.716Z</updated>
   <id>https://www.se7ensec.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>回炉再造</title>
+    <link href="https://www.se7ensec.cn/2020/01/20/%E5%9B%9E%E7%82%89%E5%86%8D%E9%80%A0/"/>
+    <id>https://www.se7ensec.cn/2020/01/20/回炉再造/</id>
+    <published>2020-01-20T07:15:15.000Z</published>
+    <updated>2020-01-20T07:51:05.716Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>安全技术学习，承认自己的弱点不是丑事。<br>只有对原理了然于心，才能突破更多的限制。        ——@ringzero </p></blockquote><a id="more"></a><p>一二三四，二二三四，转个圈圈，再来一次。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;安全技术学习，承认自己的弱点不是丑事。&lt;br&gt;只有对原理了然于心，才能突破更多的限制。        ——@ringzero &lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="生活随笔" scheme="https://www.se7ensec.cn/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随想" scheme="https://www.se7ensec.cn/tags/%E9%9A%8F%E6%83%B3/"/>
+    
+  </entry>
   
   <entry>
     <title>迟来的年度总结</title>
@@ -502,34 +527,6 @@
     
     
       <category term="面试经验" scheme="https://www.se7ensec.cn/tags/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记一次渗透提权某影视站</title>
-    <link href="https://www.se7ensec.cn/2019/03/01/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%B8%97%E9%80%8F%E6%8F%90%E6%9D%83%E6%9F%90%E5%BD%B1%E8%A7%86%E7%AB%99/"/>
-    <id>https://www.se7ensec.cn/2019/03/01/记一次渗透提权某影视站/</id>
-    <published>2019-03-01T13:00:17.000Z</published>
-    <updated>2019-12-05T17:11:17.809Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/hacked.jpg" alt="hacked"></p><blockquote><p>前几天看到个问题：渗透的本质是什么？我觉得渗透的本质就是人与人之间的博弈。</p></blockquote><a id="more"></a><h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>打开服务器上批量了一晚上的结果，发现这么一个影视网站，啧啧，查了下权重3，不过是反射，补天不要反射也没什么用啊，看看有没有什么好看的爱情动作电影吧</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.03.02/1.png" alt="1"></p><p>这种影视站，多半有些让人害羞的东西，然后打开网站的<strong>伦理分类</strong>： http://无敌/打码/m.aspx?id=10 ，哇舒服了~</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.03.02/2.png" alt="2"></p><h1 id="注入加账号"><a href="#注入加账号" class="headerlink" title="注入加账号"></a>注入加账号</h1><p>随手加个<code>&#39;</code>单引号，报错了，但是还不能确定</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.03.02/3.png" alt="3"></p><p>然后<code>and 1=1</code>页面正常，<code>and 1=2</code>页面里的小片片全没了，八成存在注入</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.03.02/4.png" alt="4"></p><p>丢到 sqlmap里，这就注入过程就不写太详细了</p><p>这个是用户表，感觉应该会有好多数据，而且内容也很全，胆子小没敢dump</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.03.02/5.png" alt="5"></p><p>但是不甘心就这么完了，看了看当前用户为sa</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap.py -u http://无敌/打码/m.aspx?id=10 --batch --current-user --current-db</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.03.02/6.png" alt="6"></p><p>直接–os-shell，运气这东西真没法说，我第一次真实渗透环境下成功使用这个命令</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.03.02/7.png" alt="7"></p><p>这是直接就可以添加用户的节奏，不过先不急，看看开没开远程端口</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap 远程ip -p1-10000</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.03.02/8.png" alt="8"></p><p>3389开放，尝试连接是可以弹出远程登陆界面的，所以我们就直接加账号了，下图可以看到添加成功了</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.03.02/9.png" alt="9"></p><h1 id="成功登陆"><a href="#成功登陆" class="headerlink" title="成功登陆"></a>成功登陆</h1><p>成功登陆上去</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.03.02/10.png" alt="10"></p><p>quser查了下，2019.2.20管理登陆过一次，一直还没注销呢，应该可以抓出密码，传上mimi神器，这里就在本机运行了</p><p>使用方法：<a href="http://blog.gentilkiwi.com/mimikatz" target="_blank" rel="noopener">传送门</a></p><h1 id="意外"><a href="#意外" class="headerlink" title="意外"></a>意外</h1><p>密码刚抓出来，还没等我复制到本地保存呢，意外发生了</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.03.02/11.png" alt="11"></p><p>应该是管理登陆了吧，不过被发现也不是不可能，等晚一点再看看，有人叫我把管理挤下去，我觉那就直接暴露了，在等等看吧，权限没有掉的话，有可能会继续更新。</p><h1 id="成功"><a href="#成功" class="headerlink" title="成功"></a>成功</h1><p>等到了半夜，强制连接一波，这个方法可以突破最大连接数</p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mstsc /admin</span><br></pre></td></tr></table></figure><p>还好权限没掉，我又进来了，打开mimi抓了一下，有结果了，复制到本地查看</p><p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.03.02/12.png" alt="12"></p><p>打完收工，这个网站只有种子，下载下来也没什么用，擦擦屁股走人了。。。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/r00tSe7en/pictures/master/hacked.jpg&quot; alt=&quot;hacked&quot;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;前几天看到个问题：渗透的本质是什么？我觉得渗透的本质就是人与人之间的博弈。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="WEB安全" scheme="https://www.se7ensec.cn/categories/WEB%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="WIN提权" scheme="https://www.se7ensec.cn/tags/WIN%E6%8F%90%E6%9D%83/"/>
-    
-      <category term="Sqlmap" scheme="https://www.se7ensec.cn/tags/Sqlmap/"/>
     
   </entry>
   
