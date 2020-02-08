@@ -221,7 +221,7 @@
     <link href="https://www.se7ensec.cn/2019/09/01/Windows%E6%9D%80%E8%BD%AF%E5%9C%A8%E7%BA%BF%E5%AF%B9%E6%AF%94%E8%BE%85%E5%8A%A9/"/>
     <id>https://www.se7ensec.cn/2019/09/01/Windows杀软在线对比辅助/</id>
     <published>2019-09-01T06:10:24.000Z</published>
-    <updated>2019-09-25T17:53:40.301Z</updated>
+    <updated>2020-02-08T15:01:47.511Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p>解决平时渗透时的痛点。</p></blockquote><a id="more"></a><p>在渗透测试过程中，Windows主机上总会遇到各种各样的杀软，人工去看系统进程也是比较麻烦的一件事。</p><p>然后发现网上好像也没人写过这个东西，就有了这个Windows杀软在线对比辅助。</p><p>GitHub：<a href="https://github.com/r00tSe7en/get_AV" target="_blank" rel="noopener">https://github.com/r00tSe7en/get_AV</a></p><p>在线版：<a href="http://get-av.se7ensec.cn/" target="_blank" rel="noopener">Windows杀软在线对比辅助</a></p><p>分享出来，一是为了方便有需要的人，二是也希望表哥们可以分享一些平时遇到的比较冷门的杀软进程，后续GitHub和在线版会一直保持同步更新数据。</p>]]></content>
     
@@ -234,7 +234,7 @@
     </summary>
     
     
-      <category term="编程开发" scheme="https://www.se7ensec.cn/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91/"/>
+      <category term="渗透测试" scheme="https://www.se7ensec.cn/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
     
       <category term="HTML" scheme="https://www.se7ensec.cn/tags/HTML/"/>
@@ -264,9 +264,9 @@
       <category term="渗透测试" scheme="https://www.se7ensec.cn/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
     
-      <category term="WIN提权" scheme="https://www.se7ensec.cn/tags/WIN%E6%8F%90%E6%9D%83/"/>
-    
       <category term="SQL注入" scheme="https://www.se7ensec.cn/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+      <category term="WIN提权" scheme="https://www.se7ensec.cn/tags/WIN%E6%8F%90%E6%9D%83/"/>
     
       <category term="GetShell" scheme="https://www.se7ensec.cn/tags/GetShell/"/>
     
