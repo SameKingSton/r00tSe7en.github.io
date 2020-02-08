@@ -264,9 +264,9 @@
       <category term="渗透测试" scheme="https://www.se7ensec.cn/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
     
     
-      <category term="SQL注入" scheme="https://www.se7ensec.cn/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
       <category term="WIN提权" scheme="https://www.se7ensec.cn/tags/WIN%E6%8F%90%E6%9D%83/"/>
+    
+      <category term="SQL注入" scheme="https://www.se7ensec.cn/tags/SQL%E6%B3%A8%E5%85%A5/"/>
     
       <category term="GetShell" scheme="https://www.se7ensec.cn/tags/GetShell/"/>
     
