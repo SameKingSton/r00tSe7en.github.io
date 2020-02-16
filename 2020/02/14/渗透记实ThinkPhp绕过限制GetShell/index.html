@@ -19,7 +19,7 @@
 <meta property="og:description" content="文章首发无法溯源安全团队公众号">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.02.14/0.png">
-<meta property="og:updated_time" content="2020-02-14T08:05:56.784Z">
+<meta property="og:updated_time" content="2020-02-16T03:15:46.942Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="渗透记实|ThinkPhp绕过限制GetShell">
 <meta name="twitter:description" content="文章首发无法溯源安全团队公众号">
@@ -173,7 +173,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1382 个字)
+                    9 分钟 读完 (大约 1389 个字)
                 </span>
                 
                 
@@ -229,7 +229,7 @@
 <figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">routeCheck</span><span class="hljs-params">($request, array $config)</span></span></span><br><span class="line"><span class="hljs-function">    </span>&#123;</span><br><span class="line">        $path   = $request-&gt;path();</span><br><span class="line">        $depr   = $config[<span class="hljs-string">'pathinfo_depr'</span>];</span><br><span class="line">        $result = <span class="hljs-keyword">false</span>;</span><br><span class="line">      ………………………………</span><br><span class="line">        <span class="hljs-comment">// 路由检测（根据路由定义返回不同的URL调度）</span></span><br><span class="line">        $result = Route::check($request, $path, $depr, $config[<span class="hljs-string">'url_domain_deploy'</span>]);</span><br></pre></td></tr></table></figure>
 
 <p>主要是将请求参数什么的传入，经过check后就基本上都处理好了</p>
-<p><img src="tp.assets/6.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.02.14/6.png" alt></p>
 <p>在调试模式开启的情况下可以进入param函数</p>
 <figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">if</span> (<span class="hljs-keyword">empty</span>(<span class="hljs-keyword">$this</span>-&gt;param)) &#123;</span><br><span class="line">            $method = <span class="hljs-keyword">$this</span>-&gt;method(<span class="hljs-keyword">true</span>);</span><br><span class="line">    ......</span><br><span class="line">        <span class="hljs-keyword">$this</span>-&gt;param = array_merge(<span class="hljs-keyword">$this</span>-&gt;get(<span class="hljs-keyword">false</span>), $vars, <span class="hljs-keyword">$this</span>-&gt;route(<span class="hljs-keyword">false</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;input(<span class="hljs-keyword">$this</span>-&gt;param, $name, $default, $filter);</span><br></pre></td></tr></table></figure>
 
