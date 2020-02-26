@@ -19,7 +19,7 @@
 <meta property="og:description" content="把每个星期中，在实战中遇到的问题，还有一些思路和思考都写下来。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/r00tSe7en/pictures/master/hacking.png">
-<meta property="og:updated_time" content="2020-02-25T13:11:31.971Z">
+<meta property="og:updated_time" content="2020-02-26T05:31:12.448Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一星期实战总结（二）">
 <meta name="twitter:description" content="把每个星期中，在实战中遇到的问题，还有一些思路和思考都写下来。">
@@ -216,7 +216,7 @@
 <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS -Pn -p 1-65535 -n --open --min-hostgroup 4 --min-parallelism 1024 -T4 -v -oG result.txt 127.0.0.0/24</span><br><span class="line">nmap -sS -Pn -p 1-65535 -n --open --min-hostgroup 4 --min-parallelism 1024 -T4 -v -oG result.txt -iL ip.txt</span><br><span class="line">--------------------------------</span><br><span class="line">-sS：使用SYN方式扫描，默认用的是-sT方式，即TCP方式，需要完成完整的三次握手，比较费时，SYN比较快一些</span><br><span class="line">-Pn：禁用PING检测，这样速度快，并且可以防止有些主机无法ping通而被漏掉不扫描</span><br><span class="line">-n：表示不进行DNS解析</span><br><span class="line">--open：只输出检测状态为open的端口，即开放的端口</span><br><span class="line">--min-hostgroup 4：调整并行扫描组的大小</span><br><span class="line">--min-parallelism 1024：调整探测报文的并行度</span><br><span class="line">-T4：总共有T0-T5，表示时间级别配置4级</span><br><span class="line">-v：打印详细扫描过程</span><br><span class="line">-oG：输出为比较人性化的格式，一条记录一行，后期好处理</span><br><span class="line">-iL：载入文件，适合指定IP批量扫，不用一条条执行了</span><br></pre></td></tr></table></figure>
 
 <p>绕WordPress的Wordfence插件，最后用</p>
-<figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">a</span>/<span class="hljs-attr">href</span>=<span class="hljs-string">javas&amp;#99;cript&amp;colon;eval(</span>'<span class="hljs-attr">Unicode</span>编码')&gt;</span>About<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">a</span>/<span class="hljs-attr">href</span>=<span class="hljs-string">javas&amp;#99;ript&amp;colon;eval(</span>'<span class="hljs-attr">Unicode</span>编码')&gt;</span>About<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>绕过去了waf，但是发现输出的内容eval那些被过滤了，而且<code>&lt;a&gt;</code>标签需要点击交互也比较鸡肋，暂时还没有解决。</p>
 
