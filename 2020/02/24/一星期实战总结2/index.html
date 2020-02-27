@@ -19,7 +19,7 @@
 <meta property="og:description" content="把每个星期中，在实战中遇到的问题，还有一些思路和思考都写下来。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/r00tSe7en/pictures/master/hacking.png">
-<meta property="og:updated_time" content="2020-02-26T16:03:50.814Z">
+<meta property="og:updated_time" content="2020-02-27T07:51:41.992Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一星期实战总结（二）">
 <meta name="twitter:description" content="把每个星期中，在实战中遇到的问题，还有一些思路和思考都写下来。">
@@ -173,7 +173,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    12 分钟 读完 (大约 1826 个字)
+                    12 分钟 读完 (大约 1859 个字)
                 </span>
                 
                 
@@ -222,7 +222,16 @@
 <figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">a</span>/<span class="hljs-attr">href</span>=<span class="hljs-string">javas&amp;#99;ript&amp;colon;eval(</span>'<span class="hljs-attr">Unicode</span>编码')&gt;</span>About<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>绕过去了waf，但是发现输出的内容eval那些被过滤了，而且<code>&lt;a&gt;</code>标签需要点击交互也比较鸡肋，暂时还没有解决。</p>
-
+<script>
+    (function(){   
+        if (prompt('请输入文章密码') !== 'se7ensec'){
+            alert('密码错误');
+            history.back();
+        }else{
+            alert('君子坦荡荡，看看也无妨。');
+        }
+    })();
+</script>
         </div>
         
         <div class="level is-size-7 is-uppercase">
