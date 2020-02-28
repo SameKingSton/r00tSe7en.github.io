@@ -7,22 +7,23 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>归档: 2017/11 - Se7en&#39;s Blog|Learn and live</title>
+<title>某某街一处XSS的绕过思路 - Se7en&#39;s Blog|Learn and live</title>
 
 
-    <meta name="description" content="Se7en&apos;s Blog,自由、创新、突破">
-<meta name="keywords" content="web安全,渗透测试,安全开发,CyberSecurity,Se7en,Se7en&#39;s Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Se7en&#39;s Blog|Learn and live">
-<meta property="og:url" content="https://www.se7ensec.cn/archives/2017/11/index.html">
+    <meta name="description" content="放假没事干之我想挣点口罩钱">
+<meta name="keywords" content="XSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="某某街一处XSS的绕过思路">
+<meta property="og:url" content="https://www.se7ensec.cn/2020/02/06/某某街一处XSS的绕过思路/index.html">
 <meta property="og:site_name" content="Se7en&#39;s Blog|Learn and live">
-<meta property="og:description" content="Se7en&apos;s Blog,自由、创新、突破">
+<meta property="og:description" content="放假没事干之我想挣点口罩钱">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.se7ensec.cn/images/og_image.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.04/0.jpg">
+<meta property="og:updated_time" content="2020-02-28T10:41:51.144Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Se7en&#39;s Blog|Learn and live">
-<meta name="twitter:description" content="Se7en&apos;s Blog,自由、创新、突破">
-<meta name="twitter:image" content="https://www.se7ensec.cn/images/og_image.png">
+<meta name="twitter:title" content="某某街一处XSS的绕过思路">
+<meta name="twitter:description" content="放假没事干之我想挣点口罩钱">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.04/0.jpg">
 
 
 
@@ -96,7 +97,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="Se7en&#39;s Blog|Learn and live" height="28">
+                <img src="/images/logo.png" alt="某某街一处XSS的绕过思路" height="28">
             
             </a>
         </div>
@@ -133,6 +134,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -146,48 +151,243 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="tag is-link">
-        十一月 2017
-        </h3>
-        <div class="timeline">
+                <div class="column is-6-tablet is-6-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.04/0.jpg" alt="某某街一处XSS的绕过思路">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
         
-            <article class="media">
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-06T15:10:24.000Z">2020-02-06</time>
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2017-11-21T14:56:44.000Z">2017-11-21</time>
-                        <a href="/2017/11/21/起点/" class="title has-link-black-ter is-size-6 has-text-weight-normal">起点</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/生活随笔/">生活随笔</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/渗透测试/">渗透测试</a>
                 </div>
-            </article>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 492 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
         
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                某某街一处XSS的绕过思路
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p>放假没事干之我想挣点口罩钱</p>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01 前言"></a>0x01 前言</h1><p>疫情影响，过年放假呆在家里实在无聊，上去某平台看了下众测项目，想着挣点口罩钱，便有了下文</p>
+<p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.02.06/1.png" alt></p>
+<h1 id="0x02-直接闭合"><a href="#0x02-直接闭合" class="headerlink" title="0x02 直接闭合"></a>0x02 直接闭合</h1><p>一开始尝试直接去闭合<code>&lt;a&gt;</code>标签，发现 <code>&quot;&gt;</code>输出时会被实体化编码，遂放弃</p>
+<p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.02.06/2.png" alt></p>
+<h1 id="0x03-javascript-伪协议"><a href="#0x03-javascript-伪协议" class="headerlink" title="0x03 javascript 伪协议"></a>0x03 javascript 伪协议</h1><p>因为输出是在<a>标签的 href 里面，所以去尝试伪协议，payload如下：</a></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:alert(document.domain)</span><br></pre></td></tr></table></figure>
+
+<p>提交后发现，输出的内容直接过滤掉了 <code>javascript:</code></p>
+<p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.02.06/3.png" alt></p>
+<p>经过几次尝试，通过以下payload绕过了过滤，成功弹窗</p>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javas&amp;Tab;cript:alert(<span class="hljs-number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.02.06/4.png" alt></p>
+<p>不过一个小破弹窗怎么能证明危害</p>
+<h1 id="0x04-绕过限制加载外部js"><a href="#0x04-绕过限制加载外部js" class="headerlink" title="0x04  绕过限制加载外部js"></a>0x04  绕过限制加载外部js</h1><p>直接用了xsshunter的payload，提交点击后，发现执行不能成功</p>
+<p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.02.06/5.png" alt></p>
+<p>仔细对比下输出的内容和原始内容才发现，输出时所有的字符都强制转换小写了</p>
+<p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.02.06/6.png" alt></p>
+<p>这里先了解下xss中的 <a href="https://www.cnblogs.com/milantgh/p/4246342.html" target="_blank" rel="noopener">编码问题</a>，eval中支持Unicode编码，最终构造的payload把大写的字母单独编码下即可</p>
+<p>最终效果：</p>
+<p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.02.06/7.png" alt></p>
+<h1 id="0x05-报送结果"><a href="#0x05-报送结果" class="headerlink" title="0x05 报送结果"></a>0x05 报送结果</h1><p>本来以为好歹能混个中危，结果厂商认为这个点需要点击交互，给了低危。</p>
+<p>申诉：评级的时候看下功能点，毕竟本来就是需要点击的业务功能。</p>
+<p>厂商反馈：经过讨论，恶意链接为javascript开头利用难度较高，故维持评级低危。</p>
+<p><img src="https://c-ssl.duitang.com/uploads/item/201802/26/20180226183740_uZY4w.thumb.400_0.gif" alt></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/XSS/">XSS</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="https://www.se7ensec.cn/" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="https://www.se7ensec.cn/" alt="微信"></div>
+</a>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<a class="button is-warning donate" onclick="document.getElementById(&#39;paypal-donate-form&#39;).submit()">
+    <span class="icon is-small">
+        <i class="fab fa-paypal"></i>
+    </span>
+    <span>Paypal</span>
+</a>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" id="paypal-donate-form">
+    <input type="hidden" name="cmd" value="_donations" />
+    <input type="hidden" name="business" value="https://www.se7ensec.cn/" />
+    <input type="hidden" name="currency_code" value="USD" />
+</form>
+
+                
+                
+<a class="button is-danger donate" href="https://www.se7ensec.cn/" target="_blank">
+    <span class="icon is-small">
+        <i class="fab fa-patreon"></i>
+    </span>
+    <span>Patreon</span>
+</a>
+
+                
         </div>
     </div>
 </div>
 
 
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/02/14/渗透记实ThinkPhp绕过限制GetShell/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">渗透记实|ThinkPhp绕过限制GetShell</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/20/回炉再造/">
+                <span class="level-item">回炉再造</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
 </div>
-                        <!-- 修改 -->
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="lv-container" data-id="city" data-uid="MTAyMC80MDkwNy8xNzQzMg==">
+    <script type="text/javascript">
+        (function(d, s) {
+            var j, e = d.getElementsByTagName(s)[0];
+
+            if (typeof LivereTower === 'function') { return; }
+
+            j = d.createElement(s);
+            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+            j.async = true;
+
+            e.parentNode.insertBefore(j, e);
+        })(document, 'script');
+    </script>
+    <noscript> Please activate JavaScript for write a comment in LiveRe</noscript>
+</div>
+
+    </div>
+</div>
+</div>
+                
+
+<!-- 粘贴的部分 -->
+                          <!-- 修改，可选保留的栏 -->
 
 
 
 
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-3 column-left is-sticky">
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#0x01-前言">
+        <span class="has-mr-6">1</span>
+        <span>0x01 前言</span>
+        </a></li><li>
+        <a class="is-flex" href="#0x02-直接闭合">
+        <span class="has-mr-6">2</span>
+        <span>0x02 直接闭合</span>
+        </a></li><li>
+        <a class="is-flex" href="#0x03-javascript-伪协议">
+        <span class="has-mr-6">3</span>
+        <span>0x03 javascript 伪协议</span>
+        </a></li><li>
+        <a class="is-flex" href="#0x04-绕过限制加载外部js">
+        <span class="has-mr-6">4</span>
+        <span>0x04  绕过限制加载外部js</span>
+        </a></li><li>
+        <a class="is-flex" href="#0x05-报送结果">
+        <span class="has-mr-6">5</span>
+        <span>0x05 报送结果</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 <div class="card widget">
@@ -1165,555 +1365,7 @@
     
 </div>
 
-
-<!-- 粘贴的部分 -->
-
-                        <!-- 修改 -->
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
-    
-        <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            归档
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2020/02/">
-                <span class="level-start">
-                    <span class="level-item">二月 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2020/01/">
-                <span class="level-start">
-                    <span class="level-item">一月 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">4</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/12/">
-                <span class="level-start">
-                    <span class="level-item">十二月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/11/">
-                <span class="level-start">
-                    <span class="level-item">十一月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/10/">
-                <span class="level-start">
-                    <span class="level-item">十月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/09/">
-                <span class="level-start">
-                    <span class="level-item">九月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/07/">
-                <span class="level-start">
-                    <span class="level-item">七月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/06/">
-                <span class="level-start">
-                    <span class="level-item">六月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/04/">
-                <span class="level-start">
-                    <span class="level-item">四月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/03/">
-                <span class="level-start">
-                    <span class="level-item">三月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">8</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/02/">
-                <span class="level-start">
-                    <span class="level-item">二月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">5</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/01/">
-                <span class="level-start">
-                    <span class="level-item">一月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/11/">
-                <span class="level-start">
-                    <span class="level-item">十一月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/10/">
-                <span class="level-start">
-                    <span class="level-item">十月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/09/">
-                <span class="level-start">
-                    <span class="level-item">九月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/08/">
-                <span class="level-start">
-                    <span class="level-item">八月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/07/">
-                <span class="level-start">
-                    <span class="level-item">七月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/05/">
-                <span class="level-start">
-                    <span class="level-item">五月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2017/12/">
-                <span class="level-start">
-                    <span class="level-item">十二月 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2017/11/">
-                <span class="level-start">
-                    <span class="level-item">十一月 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2017/08/">
-                <span class="level-start">
-                    <span class="level-item">八月 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2017/06/">
-                <span class="level-start">
-                    <span class="level-item">六月 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2017/05/">
-                <span class="level-start">
-                    <span class="level-item">五月 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2016/12/">
-                <span class="level-start">
-                    <span class="level-item">十二月 2016</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-    
-        
-
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            链接
-        </h3>
-        <ul class="menu-list">
-        
-            <li>
-                <a class="level is-mobile" href="https://www.t00ls.net" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">T00LS</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">www.t00ls.net</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://www.secquan.org/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">SecQuan</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">www.secquan.org</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://www.0xnull.org/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">0xNULL</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">www.0xnull.org</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://www.ctftools.com/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">CTF资源库</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">www.ctftools.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="http://xssor.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">XSS OR</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">xssor.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="http://www.xuzhengfu.com/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">Zheng-Fu Xu</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">www.xuzhengfu.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://blog.xxwhite.com/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">叉叉白</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">blog.xxwhite.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://blog.xttf.fun/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">XTTF</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">blog.xttf.fun</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://assassins-white.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">Assassins 小白</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">assassins-white.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://blogs.kainy.cn/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">Freetao</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">blogs.kainy.cn</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://lengjibo.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">冷逸</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">lengjibo.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://baishunxd.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">Calendula</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">baishunxd.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="http://www.recorday.cn/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">C0d3r1iu</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">www.recorday.cn</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="http://caiyuhuan.com/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">CYH</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">caiyuhuan.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://linuz.me/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">Linuz</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">linuz.me</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://plz227.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">Plz</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">plz227.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="http://blog.leanote.com/snowming" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">Snowming</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">blog.leanote.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="http://ximcx.cn/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">西门吹雪</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">ximcx.cn</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="http://www.nctry.com/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">TRY</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">www.nctry.com</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://citrusice.github.io/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">CitrusIce</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">citrusice.github.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://blog.gzsec.org/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">CoolCat</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">blog.gzsec.org</span>
-                    </span>
-                </a>
-            </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-
-
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            标签云
-        </h3>
-        <a href="/tags/00截断/" style="font-size: 10px;">00截断</a> <a href="/tags/BurpSuite/" style="font-size: 10px;">BurpSuite</a> <a href="/tags/BypassAV/" style="font-size: 10px;">BypassAV</a> <a href="/tags/GetShell/" style="font-size: 13.33px;">GetShell</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 11.67px;">JavaScript</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/SQL注入/" style="font-size: 20px;">SQL注入</a> <a href="/tags/Short-filename/" style="font-size: 10px;">Short filename</a> <a href="/tags/Sqlmap/" style="font-size: 13.33px;">Sqlmap</a> <a href="/tags/ThinkPhp/" style="font-size: 10px;">ThinkPhp</a> <a href="/tags/WIN提权/" style="font-size: 16.67px;">WIN提权</a> <a href="/tags/XSS/" style="font-size: 15px;">XSS</a> <a href="/tags/一星期实战总结/" style="font-size: 10px;">一星期实战总结</a> <a href="/tags/内网渗透/" style="font-size: 11.67px;">内网渗透</a> <a href="/tags/小技巧/" style="font-size: 10px;">小技巧</a> <a href="/tags/旅行/" style="font-size: 15px;">旅行</a> <a href="/tags/电音/" style="font-size: 10px;">电音</a> <a href="/tags/端口渗透/" style="font-size: 10px;">端口渗透</a> <a href="/tags/网站建设/" style="font-size: 10px;">网站建设</a> <a href="/tags/网络安全法/" style="font-size: 10px;">网络安全法</a> <a href="/tags/解析漏洞/" style="font-size: 10px;">解析漏洞</a> <a href="/tags/钓鱼/" style="font-size: 10px;">钓鱼</a> <a href="/tags/随想/" style="font-size: 18.33px;">随想</a> <a href="/tags/面试经验/" style="font-size: 10px;">面试经验</a>
-    </div>
-</div>
-
-    
-    
-</div>
-
+                
 
 <!-- 粘贴的部分 -->
 
@@ -1726,7 +1378,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="Se7en&#39;s Blog|Learn and live" height="28">
+                    <img src="/images/logo.png" alt="某某街一处XSS的绕过思路" height="28">
                 
                 </a>
                 <p class="is-size-7">
