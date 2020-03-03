@@ -10,19 +10,19 @@
 <title>某某街一处XSS的绕过思路 - Se7en&#39;s Blog|Learn and live</title>
 
 
-    <meta name="description" content="放假没事干之我想挣点口罩钱">
+    <meta name="description" content="众测吃便便">
 <meta name="keywords" content="XSS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="某某街一处XSS的绕过思路">
 <meta property="og:url" content="https://www.se7ensec.cn/2020/02/06/某某街一处XSS的绕过思路/index.html">
 <meta property="og:site_name" content="Se7en&#39;s Blog|Learn and live">
-<meta property="og:description" content="放假没事干之我想挣点口罩钱">
+<meta property="og:description" content="众测吃便便">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.04/0.jpg">
-<meta property="og:updated_time" content="2020-02-28T10:41:51.144Z">
+<meta property="og:updated_time" content="2020-03-03T05:49:13.288Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="某某街一处XSS的绕过思路">
-<meta name="twitter:description" content="放假没事干之我想挣点口罩钱">
+<meta name="twitter:description" content="众测吃便便">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2019.12.04/0.jpg">
 
 
@@ -173,7 +173,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 492 个字)
+                    3 分钟 读完 (大约 472 个字)
                 </span>
                 
                 
@@ -192,15 +192,15 @@
         </h1>
         <div class="content">
             <blockquote>
-<p>放假没事干之我想挣点口罩钱</p>
+<p>众测吃便便</p>
 </blockquote>
 <a id="more"></a>
 
-<h1 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01 前言"></a>0x01 前言</h1><p>疫情影响，过年放假呆在家里实在无聊，上去某平台看了下众测项目，想着挣点口罩钱，便有了下文</p>
+<h1 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01 前言"></a>0x01 前言</h1><p>疫情影响，过年放假呆在家里实在无聊，上去某平台看了下众测项目，想着挣点口罩钱</p>
 <p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.02.06/1.png" alt></p>
 <h1 id="0x02-直接闭合"><a href="#0x02-直接闭合" class="headerlink" title="0x02 直接闭合"></a>0x02 直接闭合</h1><p>一开始尝试直接去闭合<code>&lt;a&gt;</code>标签，发现 <code>&quot;&gt;</code>输出时会被实体化编码，遂放弃</p>
 <p><img src="https://raw.githubusercontent.com/r00tSe7en/pictures/master/2020.02.06/2.png" alt></p>
-<h1 id="0x03-javascript-伪协议"><a href="#0x03-javascript-伪协议" class="headerlink" title="0x03 javascript 伪协议"></a>0x03 javascript 伪协议</h1><p>因为输出是在<a>标签的 href 里面，所以去尝试伪协议，payload如下：</a></p>
+<h1 id="0x03-javascript-伪协议"><a href="#0x03-javascript-伪协议" class="headerlink" title="0x03 javascript 伪协议"></a>0x03 javascript 伪协议</h1><p>因为输出是在<code>&lt;a&gt;</code>标签的 <code>href</code> 里面，所以去尝试伪协议，payload如下：</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:alert(document.domain)</span><br></pre></td></tr></table></figure>
 
 <p>提交后发现，输出的内容直接过滤掉了 <code>javascript:</code></p>
@@ -220,8 +220,7 @@
 <h1 id="0x05-报送结果"><a href="#0x05-报送结果" class="headerlink" title="0x05 报送结果"></a>0x05 报送结果</h1><p>本来以为好歹能混个中危，结果厂商认为这个点需要点击交互，给了低危。</p>
 <p>申诉：评级的时候看下功能点，毕竟本来就是需要点击的业务功能。</p>
 <p>厂商反馈：经过讨论，恶意链接为javascript开头利用难度较高，故维持评级低危。</p>
-<p><img src="https://c-ssl.duitang.com/uploads/item/201802/26/20180226183740_uZY4w.thumb.400_0.gif" alt></p>
-
+<h1 id="给👴爪巴"><a href="#给👴爪巴" class="headerlink" title="给👴爪巴"></a>给👴爪巴</h1>
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -383,6 +382,10 @@
         <a class="is-flex" href="#0x05-报送结果">
         <span class="has-mr-6">5</span>
         <span>0x05 报送结果</span>
+        </a></li><li>
+        <a class="is-flex" href="#给👴爪巴">
+        <span class="has-mr-6">6</span>
+        <span>给👴爪巴</span>
         </a></li></ul>
         </div>
     </div>
